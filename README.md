@@ -250,7 +250,6 @@ MIT — use it, learn from it, build on it. See [`LICENSE`](LICENSE).
 - **How does the AI part work?** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 - **How do I add a new health domain?** See [`docs/EXTENDING.md`](docs/EXTENDING.md)
 - **Is my data actually private?** See [`docs/PRIVACY.md`](docs/PRIVACY.md)
-- **How do I use this for my CV?** See [`docs/CV-GUIDE.md`](docs/CV-GUIDE.md)
 
 ---
 
