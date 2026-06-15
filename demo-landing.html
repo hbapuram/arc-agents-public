@@ -947,6 +947,160 @@ This snapshot is serialized as plain text and becomes part of EVERY agent's cont
         </div>
     </section>
 
+    <!-- Demo Walkthrough -->
+    <section class="container">
+        <h2>See It In Action</h2>
+        <div class="section-intro">
+            Here's how to use Arc Agents with real example data.
+        </div>
+
+        <h3>Step 1: Load Demo Data</h3>
+        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
+            <p style="margin-bottom: 15px;">When you first open Arc, go to the <strong>Settings</strong> tab and click <strong>"Load Demo Data"</strong>. This populates the app with realistic example data so you can see how everything works.</p>
+            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 20px; font-size: 13px; font-family: monospace;">
+                📱 Settings Tab
+                ├── Load Demo Data (button)
+                └── [Click → Loads 7 days of meals, workouts, sleep, symptoms, etc.]
+            </div>
+        </div>
+
+        <h3>Step 2: Explore the Today Tab</h3>
+        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
+            <p style="margin-bottom: 20px;">The <strong>Today tab</strong> is your dashboard. You'll see:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>🌅 Aurora Brief</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Morning synthesis: 5 personalized actions for today based on your cycle phase, sleep quality, and workouts.</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>📊 Health Cards</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Sleep (7h), HRV (55), Steps (12,000), Cycle phase (Luteal), Water intake (1800ml).</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>⏰ Schedule</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Your day's plan: workouts, meals, supplements, care routines, chores.</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>💧 Water Tracker</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Quick-add buttons: Glass, Mug, Bottle. Progress bar shows 1800/2000ml logged.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Step 3: Chat With Agents</h3>
+        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
+            <p style="margin-bottom: 20px;">Click on an agent to chat. Each agent sees your full health snapshot and gives personalized advice:</p>
+
+            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 25px; margin: 20px 0;">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">🍽️ Nora (Nutrition)</h4>
+                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: monospace; font-size: 12px;">
+You: <strong>"What should I eat today?"</strong>
+
+Nora: "You're in your Luteal phase with low HRV (55). Today I recommend:
+- Carbs: 45% (from 40%) — progesterone increases appetite
+- Protein: 100g (stable)
+- Meals: Warm carbs, anti-inflammatory foods
+
+Try: Sweet potato + black beans + olive oil (fits your pantry)
+Macros: 650 kcal, 95g carbs, 18g protein, 22g fat"
+                </div>
+                <p style="font-size: 12px; color: var(--text-light);">Notice: Nora knew your phase, HRV, pantry, and macro goals—all without you telling her.</p>
+            </div>
+
+            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 25px;">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">💪 Felix (Fitness)</h4>
+                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: monospace; font-size: 12px;">
+You: <strong>"Should I do HIIT today?"</strong>
+
+Felix: "Not today. Your HRV is low (55) and you're in Luteal phase.
+Your body needs recovery. I recommend:
+- Yoga or gentle walk (30 min)
+- Prioritize sleep tonight
+- Save HIIT for your Follicular phase (higher tolerance)
+
+You did 3 workouts this week—good volume. Rest is the right call."
+                </div>
+                <p style="font-size: 12px; color: var(--text-light);">Felix coordinated with Nora: both recommend recovery without conflicting.</p>
+            </div>
+        </div>
+
+        <h3>Step 4: Log Your Data</h3>
+        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
+            <p style="margin-bottom: 15px;">Go to <strong>Health → Data</strong> to log your health information:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="background: white; padding: 15px; border-radius: 8px;">
+                    <strong>Sleep</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">7 hours, 60 min deep sleep</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px;">
+                    <strong>HRV</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">55 ms (recovery indicator)</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px;">
+                    <strong>Workouts</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Yoga, 30 min, felt good 🟢</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px;">
+                    <strong>Symptoms</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Bloating (3/5), fatigue (2/5)</p>
+                </div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-light);">Or use <strong>"Tell Arc"</strong> on the Today tab to log naturally: <em>"Slept 7 hours, did 30 min yoga, feeling bloated"</em> → Arc parses it automatically.</p>
+        </div>
+
+        <h3>Step 5: View Council Synthesis</h3>
+        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
+            <p style="margin-bottom: 20px;">Go to the <strong>Council tab</strong> to see the evening synthesis—your day summarized:</p>
+            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 25px;">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">🕯️ Council Review</h4>
+                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: monospace; font-size: 12px;">
+<strong>Today's Summary:</strong>
+✓ Respected your Luteal phase (yoga instead of HIIT)
+✓ Macro goals hit: 1950 kcal, 105g protein, 52% carbs
+✓ Sleep: 7 hours (good recovery)
+✓ HRV improved slightly: 55 → 58
+✓ Symptoms on track: bloating expected day 21 of cycle
+
+<strong>Trends (7-day):</strong>
+- Sleep: 7.1 hours avg (stable)
+- Protein: 103g avg (exceeds goal)
+- Workouts: 2 this week (good volume for Luteal)
+- Symptoms: Bloating peaks day 21-23 (pattern confirmed)
+
+<strong>Recommendation:</strong>
+Keep magnesium intake high through day 28.
+Schedule intense workouts for Follicular phase (next week).
+                </div>
+            </div>
+        </div>
+
+        <h3>Step 6: Explore Other Features</h3>
+        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>🛒 Meals → Grocery</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Snap a meal photo → AI extracts ingredients. Scan a receipt → AI parses items + prices.</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>📅 Life Tab</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">View your week's schedule. Drag to reorder. Sync with Google Calendar.</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>🔍 Agents Tab</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">See all 15 agents. Track token usage. View system prompts.</p>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+                    <strong>⚙️ Settings</strong>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Dark mode, theme colors, export/restore data, cloud sync setup.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://github.com/yourusername/arc-agents-public#setup" class="btn btn-primary">Deploy Arc & Try It Yourself</a>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section style="text-align: center; padding: 100px 20px; background: var(--primary); color: white;">
         <div class="container">
