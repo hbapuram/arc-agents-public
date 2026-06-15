@@ -122,7 +122,9 @@ arc-agents/
 
 ### Live Demo
 
-**[View the landing page →](demo-landing.html)** (explains what Arc does, who it's for, features overview)
+**[View the landing page →](https://hbapuram.github.io/arc-agents-public/demo-landing.html)** 
+
+(Architecture, all 15 agents, integration details, tech stack, and how to get started)
 
 ### Local Setup
 
@@ -147,7 +149,17 @@ python api/index.py
 # Open http://localhost:5000 in your browser
 ```
 
-### First Run
+### Enable GitHub Pages (For Live Demo)
+
+To view the interactive demo landing page:
+
+1. Go to your repo **Settings** → **Pages** (left sidebar)
+2. Under "Source", select `main` branch and `/ (root)` folder
+3. Click **Save**
+4. GitHub will provision your Pages site (~1 min)
+5. Your demo is now live at: `https://yourusername.github.io/arc-agents-public/demo-landing.html`
+
+### First Run (Local)
 
 1. Open the app → **Settings** tab → toggle **Load Demo Data**
 2. Play with the schedule, log a meal, check the cycle phase
