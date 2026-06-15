@@ -120,6 +120,10 @@ arc-agents/
 - Python 3.9+ (for running the Flask API locally)
 - `ANTHROPIC_API_KEY` (your Claude API key)
 
+### Live Demo
+
+**[View the landing page →](demo-landing.html)** (explains what Arc does, who it's for, features overview)
+
 ### Local Setup
 
 ```bash
@@ -189,9 +193,6 @@ This codebase demonstrates:
 
 ---
 
-## Learning & Articles
-
-The journey behind Arc Agents is documented in a **7-part Substack series** exploring AI product design, multi-agent systems, and building with real constraints. [Follow along →](https://substack.com/@hrishita)
 
 ---
 
@@ -250,4 +251,4 @@ MIT — use it, learn from it, build on it. See [`LICENSE`](LICENSE).
 
 ---
 
-**Built with ❤️ | [GitHub](https://github.com/yourusername/arc-agents-public) | [Deployed on Vercel](https://vercel.com)**
+**Open Source | [GitHub](https://github.com/yourusername/arc-agents-public) | [Demo Landing](demo-landing.html) | MIT License**

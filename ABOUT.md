@@ -322,7 +322,6 @@ Arc uses **Claude Haiku** (fast, cheap, capable):
 - 🚀 **Mobile app** (React Native, same localStorage architecture)
 - 🚀 **Real integrations** (Apple Health, Oura, Whoop via OAuth)
 - 🚀 **Community agents** (users share custom agents + prompts)
-- 📚 **Learning resources** (7-part Substack series on AI products)
 - 🤝 **Extensibility** (easy-to-add domains: injury tracking, meditation, etc.)
 
 ---
@@ -335,7 +334,6 @@ I built Arc to solve my problem. Then realized it could solve others' too. Open-
 
 The real innovation isn't the AI—it's the **synthesis**. One agent seeing one thing is obvious. 15 agents reading the same snapshot, coordinating intelligently, giving you one coherent action—that's the product.
 
-**Follow the journey:** [Substack series on building Arc Agents](https://substack.com/@hrishita)
 
 ---
 

@@ -113,7 +113,6 @@ Token counts are captured locally (in `arc-tokens-v1` localStorage store) for tr
 
 **We see:**
 - GitHub stars, forks, issues
-- Substack subscriber count (if you follow the series)
 - Nothing else
 
 **We don't see:**

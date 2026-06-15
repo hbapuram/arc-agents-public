@@ -44,9 +44,9 @@ See [`EXTENDING.md`](EXTENDING.md) for patterns and best practices.
 
 Open a PR! Docs are just `.md` files in `docs/`.
 
-### 5. Write an Article
+### 5. Share Your Experience
 
-Have a blog post about using Arc Agents? Tweet about it? Share in the discussions. We'd love to hear.
+Built something with Arc? Found a cool use case? Have feedback? Share in discussions or open an issue.
 
 ---
 
@@ -148,7 +148,7 @@ Stress feeds into Aurora/Council synthesis.
 - **Integrations**: Real Apple Health, Oura, Whoop, MyFitnessPal, Cronometer
 - **UI polish**: Mobile responsiveness, dark mode, accessibility (a11y)
 - **Docs**: Tutorials, architecture docs, troubleshooting guides
-- **Articles**: Blog posts about building AI products, multi-agent systems
+- **Examples**: Demo use cases, example workflows, real-world scenarios
 
 ## What We're Not Looking For
 
