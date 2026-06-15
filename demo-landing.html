@@ -18,6 +18,7 @@
             --text: #1A1A1A;
             --text-light: #666;
             --border: #E0E0E0;
+            --code-bg: #f5f5f5;
         }
 
         body {
@@ -105,6 +106,11 @@
             text-align: center;
         }
 
+        section h3 {
+            font-size: 24px;
+            margin: 30px 0 20px 0;
+        }
+
         /* Features Grid */
         .features {
             display: grid;
@@ -124,6 +130,7 @@
             color: var(--primary);
             margin-bottom: 12px;
             font-size: 20px;
+            margin-top: 0;
         }
 
         .feature p {
@@ -131,41 +138,158 @@
             font-size: 15px;
         }
 
-        /* Agents */
-        .agents-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+        /* Architecture Section */
+        .architecture-diagram {
+            background: var(--code-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            font-family: 'Monaco', 'Courier', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-x: auto;
+            border: 1px solid var(--border);
         }
 
-        .agent {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
+        .arch-layer {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .arch-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .arch-desc {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Agents Grid */
+        .agents-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .agent-card {
+            background: white;
             border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
             transition: all 0.3s ease;
         }
 
-        .agent:hover {
+        .agent-card:hover {
             border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.1);
+            box-shadow: 0 8px 24px rgba(78, 205, 196, 0.15);
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
         .agent-emoji {
             font-size: 32px;
-            margin-bottom: 10px;
         }
 
-        .agent-name {
-            font-weight: 600;
+        .agent-info h3 {
             color: var(--primary);
-            margin-bottom: 5px;
+            margin: 0 0 5px 0;
+            font-size: 18px;
         }
 
         .agent-role {
-            font-size: 12px;
             color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .agent-description {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .agent-features {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .agent-features strong {
+            color: var(--primary);
+        }
+
+        /* Data Flow */
+        .data-flow {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .flow-step {
+            display: inline-block;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: 600;
+            color: var(--primary);
+            border: 2px solid var(--accent);
+        }
+
+        .flow-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        /* Integration Section */
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .integration-box {
+            padding: 25px;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .integration-box h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .integration-box p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier', monospace;
+            font-size: 13px;
+            color: var(--text);
         }
 
         /* Personas */
@@ -196,6 +320,7 @@
         .persona h3 {
             color: var(--primary);
             margin-bottom: 12px;
+            font-size: 18px;
         }
 
         .persona p {
@@ -204,33 +329,28 @@
             line-height: 1.6;
         }
 
-        /* Why Section */
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
         }
 
-        .why-item {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .why-number {
-            font-size: 48px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .why-item h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .why-item p {
-            color: var(--text-light);
+        .tech-badge {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .tech-badge.framework {
+            border-color: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
         }
 
         /* Stats */
@@ -260,24 +380,6 @@
         .stat-label {
             color: var(--text-light);
             font-size: 14px;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .tech-badge {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: var(--text-light);
         }
 
         /* Footer */
@@ -329,6 +431,28 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .data-flow {
+                padding: 20px;
+            }
+
+            .flow-step {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .flow-arrow {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+
+        .section-intro {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 16px;
         }
     </style>
 </head>
@@ -336,123 +460,396 @@
     <!-- Header -->
     <header>
         <h1>Arc Agents</h1>
-        <p>Your personal AI health companion that synthesizes your cycle, sleep, nutrition, and workouts into personalized guidance.</p>
+        <p>Multi-agent AI system that synthesizes your health data—cycle phase, sleep, nutrition, workouts—into personalized guidance you can trust.</p>
         <div class="cta-buttons">
             <a href="https://github.com/yourusername/arc-agents-public" class="btn btn-primary">View on GitHub</a>
-            <a href="#about" class="btn btn-secondary">Learn More</a>
+            <a href="#architecture" class="btn btn-secondary">Learn How It Works</a>
         </div>
     </header>
 
-    <!-- What It Does -->
-    <section id="about" class="container">
-        <h2>What Arc Agents Does</h2>
+    <!-- Core Concept -->
+    <section class="container">
+        <h2>The Problem & Solution</h2>
+        <div class="section-intro">
+            You have health data scattered across 5+ apps: sleep, cycle, meals, workouts, symptoms. None talk to each other. All advice is generic.
+            <br><br>
+            <strong>Arc Agents solves this by synthesizing everything together.</strong>
+        </div>
         <div class="features">
             <div class="feature">
-                <h3>🔄 Cross-Domain Synthesis</h3>
-                <p>Reads your cycle phase, sleep quality, meals, workouts, and symptoms—then synthesizes them into one coherent recommendation.</p>
+                <h3>🔄 Synthesis, Not Collection</h3>
+                <p>Most apps collect data and show dashboards. Arc reads all your data, understands the connections, and gives you one coherent recommendation.</p>
             </div>
             <div class="feature">
-                <h3>🧠 15 Specialized Agents</h3>
-                <p>Each agent focuses on their domain (nutrition, fitness, cycle, care, sleep, etc.) but shares the same health context.</p>
+                <h3>🧠 Multi-Agent Intelligence</h3>
+                <p>15 specialized agents (nutrition, fitness, cycle, sleep, etc.) all read the same health snapshot and coordinate seamlessly.</p>
             </div>
             <div class="feature">
-                <h3>📊 Real-Time Synthesis</h3>
-                <p>Aurora (morning brief) and Council (evening review) give you personalized insights based on your patterns.</p>
+                <h3>🔒 Privacy by Design</h3>
+                <p>All data stays in your browser. No user database. No servers. No tracking. Completely offline-first.</p>
             </div>
             <div class="feature">
-                <h3>🔒 Privacy First</h3>
-                <p>All data stays in your browser. No user database, no servers storing your health info. Completely offline-first.</p>
-            </div>
-            <div class="feature">
-                <h3>📱 No Build Step</h3>
-                <p>React SPA that runs in the browser. Flask API that's stateless and serverless. Deploy anywhere, self-host, or run locally.</p>
-            </div>
-            <div class="feature">
-                <h3>💡 Learns As You Go</h3>
-                <p>Personalization improves with every log. Arc figures out your patterns and adapts recommendations.</p>
+                <h3>📊 Real Personalization</h3>
+                <p>Arc learns as you use it. The more you log, the better it understands your unique patterns.</p>
             </div>
         </div>
     </section>
 
-    <!-- The 15 Agents -->
+    <!-- Architecture -->
+    <section id="architecture" class="container">
+        <h2>How It's Built</h2>
+        <div class="section-intro">
+            Arc is a sophisticated system, but built pragmatically with real constraints in mind.
+        </div>
+
+        <h3>System Architecture</h3>
+        <div class="architecture-diagram">
+            <div class="arch-layer">
+                <div class="arch-title">🖥️ Frontend (Browser)</div>
+                <div class="arch-desc">React 18 SPA (no build step), 16 localStorage stores, token tracking, UI for all features</div>
+            </div>
+            <div class="arch-layer">
+                <div class="arch-title">🌐 API Layer (Flask on Vercel)</div>
+                <div class="arch-desc">Stateless serverless function. Routes: /chat, /context, /synthesize, /parse-entry, /macros, /parse-photo, etc.</div>
+            </div>
+            <div class="arch-layer">
+                <div class="arch-title">🤖 AI Layer (Claude Haiku)</div>
+                <div class="arch-desc">Fast, cheap, capable. System prompts specialized per agent. Token tracking on every call.</div>
+            </div>
+            <div class="arch-layer">
+                <div class="arch-title">💾 Data Layer (localStorage)</div>
+                <div class="arch-desc">16 stores: pantry, meals, recipes, schedule, chores, supplements, workouts, health log, symptoms, blood tests, body, water, shops, ingredient intel, sync status, tokens</div>
+            </div>
+        </div>
+
+        <h3>Data Flow</h3>
+        <div class="data-flow">
+            <strong>When you ask an agent a question:</strong>
+            <br><br>
+            <div class="flow-step">You ask (e.g., "What should I eat?")</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Arc reads all 16 stores</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Builds a health snapshot</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Sends to Claude + agent prompt</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Claude responds</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">Tokens tracked locally</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">You get answer</div>
+        </div>
+
+        <h3>Key Design Decisions</h3>
+        <div class="features">
+            <div class="feature">
+                <h3>No Build Step</h3>
+                <p>React UMD + Babel Standalone. Edit JSX, refresh browser, see change. Zero webpack complexity.</p>
+            </div>
+            <div class="feature">
+                <h3>localStorage-First</h3>
+                <p>5MB is a feature, not a limitation. Forces lean design. Caps on stores (500 meals max) prevent bloat.</p>
+            </div>
+            <div class="feature">
+                <h3>Stateless API</h3>
+                <p>Flask function routes to Claude. No persistent state. All compute in Claude, all data in browser.</p>
+            </div>
+            <div class="feature">
+                <h3>Shared Context</h3>
+                <p>All agents read the same "snapshot"—your health data in plain English. Enables coordination without explicit communication.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agents Detail -->
     <section class="container">
-        <h2>Meet Your 15 Agents</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 40px;">Each specialized, all coordinated</p>
-        <div class="agents-grid">
-            <div class="agent">
-                <div class="agent-emoji">🍽️</div>
-                <div class="agent-name">Nora</div>
-                <div class="agent-role">Nutrition</div>
+        <h2>The 15 Agents</h2>
+        <div class="section-intro">
+            Each agent is specialized but receives the same health snapshot. This enables coordination without daisy-chaining.
+        </div>
+
+        <h3>Health Domain Agents</h3>
+        <div class="agents-detailed">
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🍽️</div>
+                    <div class="agent-info">
+                        <h3>Nora</h3>
+                        <div class="agent-role">Nutrition & Meal Planning</div>
+                    </div>
+                </div>
+                <div class="agent-description">Recommends meals based on your cycle phase, macro goals, pantry inventory, and dietary constraints.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Meals, pantry, cycle phase, macro goals, purchase history
+                    <br><strong>Outputs:</strong> Recipe recommendations, macro breakdowns, shopping lists
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">💪</div>
-                <div class="agent-name">Felix</div>
-                <div class="agent-role">Fitness</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">💪</div>
+                    <div class="agent-info">
+                        <h3>Felix</h3>
+                        <div class="agent-role">Fitness & Recovery</div>
+                    </div>
+                </div>
+                <div class="agent-description">Recommends workouts based on HRV, sleep quality, cycle phase, and feedback history.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Workouts, sleep, HRV, cycle phase, feedback
+                    <br><strong>Outputs:</strong> Workout recommendations, intensity/duration, recovery guidance
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🔴</div>
-                <div class="agent-name">Flora</div>
-                <div class="agent-role">Cycle</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🔴</div>
+                    <div class="agent-info">
+                        <h3>Flora</h3>
+                        <div class="agent-role">Cycle Intelligence</div>
+                    </div>
+                </div>
+                <div class="agent-description">Detects cycle phase and provides phase-specific guidance for nutrition, workouts, and mood.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Period start date, symptoms, sleep, mood
+                    <br><strong>Outputs:</strong> Phase prediction, guidance by phase, supplement recommendations
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">💅</div>
-                <div class="agent-name">Cara</div>
-                <div class="agent-role">Care</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">💅</div>
+                    <div class="agent-info">
+                        <h3>Cara</h3>
+                        <div class="agent-role">Skincare & Personal Care</div>
+                    </div>
+                </div>
+                <div class="agent-description">Manages AM/PM routines, expiry tracking, and phase-aware product recommendations.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Skincare products, expiry dates, cycle phase
+                    <br><strong>Outputs:</strong> Routines, expiry alerts, product timing guidance
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">😴</div>
-                <div class="agent-name">Soma</div>
-                <div class="agent-role">Sleep</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">😴</div>
+                    <div class="agent-info">
+                        <h3>Soma</h3>
+                        <div class="agent-role">Sleep Optimization</div>
+                    </div>
+                </div>
+                <div class="agent-description">Analyzes sleep patterns and provides recovery recommendations based on cycle and workouts.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Sleep history, HRV, cycle phase, workouts
+                    <br><strong>Outputs:</strong> Sleep quality scoring, recovery needs, timing guidance
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🌙</div>
-                <div class="agent-name">Luna</div>
-                <div class="agent-role">Wellness</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🤒</div>
+                    <div class="agent-info">
+                        <h3>Eve</h3>
+                        <div class="agent-role">Symptoms & Health Tracking</div>
+                    </div>
+                </div>
+                <div class="agent-description">Logs daily symptoms and finds patterns correlated with cycle phase and other factors.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Symptom log, severity, cycle phase
+                    <br><strong>Outputs:</strong> Pattern detection, phase correlation, anomaly alerts
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🤒</div>
-                <div class="agent-name">Eve</div>
-                <div class="agent-role">Symptoms</div>
+        </div>
+
+        <h3>Synthesis Agents</h3>
+        <div class="agents-detailed">
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🌅</div>
+                    <div class="agent-info">
+                        <h3>Aurora</h3>
+                        <div class="agent-role">Morning Brief</div>
+                    </div>
+                </div>
+                <div class="agent-description">Synthesizes all data into 5 personalized actions for today. Cached once per morning.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> ALL stores (comprehensive)
+                    <br><strong>Outputs:</strong> 5 prioritized actions for the day
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🛒</div>
-                <div class="agent-name">Scout</div>
-                <div class="agent-role">Shopping</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🕯️</div>
+                    <div class="agent-info">
+                        <h3>Council</h3>
+                        <div class="agent-role">Evening Review</div>
+                    </div>
+                </div>
+                <div class="agent-description">Reviews the day's data and provides insights on patterns, adherence, and trends.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> ALL stores + 28-day trends
+                    <br><strong>Outputs:</strong> Daily insights, progress report, pattern analysis
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🌅</div>
-                <div class="agent-name">Aurora</div>
-                <div class="agent-role">Morning Brief</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">📈</div>
+                    <div class="agent-info">
+                        <h3>Lyra</h3>
+                        <div class="agent-role">Trend Analysis</div>
+                    </div>
+                </div>
+                <div class="agent-description">Computes 7-day and 28-day trends to surface what's actually changing vs. noise.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Historical data
+                    <br><strong>Outputs:</strong> Trend bullets, adherence metrics, improvement areas
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🕯️</div>
-                <div class="agent-name">Council</div>
-                <div class="agent-role">Evening Review</div>
+
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🛒</div>
+                    <div class="agent-info">
+                        <h3>Scout</h3>
+                        <div class="agent-role">Shopping Intelligence</div>
+                    </div>
+                </div>
+                <div class="agent-description">Tracks store preferences and ingredient quality/price ratings to optimize shopping.</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> Purchase history, shop ratings, ingredient intel
+                    <br><strong>Outputs:</strong> Store recommendations, price checks, quality ratings
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">📈</div>
-                <div class="agent-name">Lyra</div>
-                <div class="agent-role">Trends</div>
+        </div>
+
+        <h3>Meta & Coordination</h3>
+        <div class="agents-detailed">
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-emoji">🎯</div>
+                    <div class="agent-info">
+                        <h3>Vera</h3>
+                        <div class="agent-role">Meta-Agent & Disambiguation</div>
+                    </div>
+                </div>
+                <div class="agent-description">Sees all agent recommendations and handles conflicts (e.g., "rest day" vs. "HIIT workout").</div>
+                <div class="agent-features">
+                    <strong>Reads:</strong> All agents' contexts and outputs
+                    <br><strong>Outputs:</strong> Prioritized recommendations, conflict resolution
+                </div>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">📊</div>
-                <div class="agent-name">Mirror</div>
-                <div class="agent-role">Adherence</div>
+        </div>
+    </section>
+
+    <!-- How It Integrates -->
+    <section class="container">
+        <h2>The Integration Story</h2>
+        <div class="section-intro">
+            This is what makes Arc different: agents aren't daisy-chained or competing. They coordinate through shared context.
+        </div>
+
+        <h3>The "Shared Snapshot" Pattern</h3>
+        <div class="code-block">
+buildArcSnapshot() reads all 16 stores:
+{
+  today: "2026-06-15",
+  phase: "Luteal",
+  sleep: { duration: 7, hrv: 55, quality: "good" },
+  meals: [ { name: "oatmeal", macros: {...} }, ... ],
+  workouts: [ { type: "HIIT", duration: 30, feedback: "🟢" }, ... ],
+  supplements: [ { name: "Magnesium", taken: true, phase: "Luteal" }, ... ],
+  symptoms: [ { severity: 3, name: "bloating", day: 21 }, ... ],
+  water: { logged: 1800, goal: 2000 },
+  ...
+}
+
+This snapshot is serialized as plain text and becomes part of EVERY agent's context.
+        </div>
+
+        <h3>Example: The Multi-Agent Conversation</h3>
+        <div class="integration-grid">
+            <div class="integration-box">
+                <h4>You Ask Nora</h4>
+                <p><strong>"What should I eat today?"</strong></p>
+                <p>Nora reads the snapshot and knows: Luteal phase (high appetite), HRV low (prioritize carbs), workouts this week = 12 sessions (protein high). Recommends more carbs than usual.</p>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">❤️</div>
-                <div class="agent-name">Pulse</div>
-                <div class="agent-role">Vitals</div>
+            <div class="integration-box">
+                <h4>You Ask Felix</h4>
+                <p><strong>"Should I do HIIT today?"</strong></p>
+                <p>Felix reads the snapshot and knows: HRV 55 (below peak), Luteal phase (lower tolerance), sleep 7h (adequate). Recommends gentle yoga instead.</p>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">🌆</div>
-                <div class="agent-name">Dusk</div>
-                <div class="agent-role">Sleep Prep</div>
+            <div class="integration-box">
+                <h4>They Never Conflict</h4>
+                <p>Both see the same data. Both prioritize recovery. Both recommend the same thing without talking to each other—because they read the same snapshot.</p>
             </div>
-            <div class="agent">
-                <div class="agent-emoji">✨</div>
-                <div class="agent-name">Halo</div>
-                <div class="agent-role">Wellbeing</div>
+            <div class="integration-box">
+                <h4>Aurora Synthesizes</h4>
+                <p><strong>Morning brief:</strong> "Rest day today (HRV low). Eat more carbs (Luteal + low HRV). Yoga + meal prep. Magnesium with dinner."</p>
+                <p>All 5 recommendations are cohesive, not conflicting.</p>
+            </div>
+        </div>
+
+        <h3>The Data Flow on Every Interaction</h3>
+        <div class="code-block">
+1. User logs data (meal, workout, symptom, etc.)
+   ↓
+2. Data stored in localStorage (arc-[domain]-v1)
+   ↓
+3. Arc fires "arc-[domain]-change" event
+   ↓
+4. UI re-renders (instant feedback)
+   ↓
+5. buildArcSnapshot() updates the in-memory health picture
+   ↓
+6. When user chats with an agent:
+   - Fetch /api/context/[agent-id] (system prompt + domain context)
+   - Build client_context from relevant stores
+   - Call /api/chat with full snapshot in context
+   - Claude sees: system prompt + snapshot + client context
+   - Returns recommendation
+   - Token usage tracked locally
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="container">
+        <h2>Built With</h2>
+        <div class="section-intro">
+            Production-grade, real-world pragmatic choices.
+        </div>
+        <div class="tech-stack">
+            <div class="tech-badge framework">React 18 UMD</div>
+            <div class="tech-badge framework">Babel Standalone</div>
+            <div class="tech-badge framework">Flask</div>
+            <div class="tech-badge framework">Claude Haiku API</div>
+            <div class="tech-badge">localStorage (16 stores)</div>
+            <div class="tech-badge">Google Sheets (optional)</div>
+            <div class="tech-badge">Google Calendar (optional)</div>
+            <div class="tech-badge">Vercel (serverless)</div>
+            <div class="tech-badge">PWA (installable)</div>
+            <div class="tech-badge">MIT License</div>
+        </div>
+
+        <h3>Why These Choices?</h3>
+        <div class="features">
+            <div class="feature">
+                <h3>React UMD + Babel</h3>
+                <p><strong>No build step.</strong> Edit JSX, refresh browser. Fast development loop. Smaller cognitive load than webpack complexity.</p>
+            </div>
+            <div class="feature">
+                <h3>localStorage as Backend</h3>
+                <p><strong>Privacy by default.</strong> 5MB limit forces lean design. No user database means no data at rest to leak. Fast reads/writes.</p>
+            </div>
+            <div class="feature">
+                <h3>Stateless Flask</h3>
+                <p><strong>Scales to zero.</strong> Only pay for compute when in use. All state lives in browser. Easier to audit (code is simple).</p>
+            </div>
+            <div class="feature">
+                <h3>Claude Haiku</h3>
+                <p><strong>Fast + cheap.</strong> Fast enough for real-time chat (< 1 sec), cheap enough for daily synthesis calls, capable enough for domain reasoning.</p>
             </div>
         </div>
     </section>
@@ -464,54 +861,27 @@
             <div class="persona">
                 <div class="persona-emoji">👩‍🔬</div>
                 <h3>Women Managing Their Cycle</h3>
-                <p>Your body isn't constant. Arc knows your cycle phase changes what nutrition is optimal, what workouts work, and what supplements you need.</p>
+                <p>Your body changes every 28 days. Arc knows your phase affects nutrition, workouts, mood, sleep. Get advice that's actually right for today.</p>
             </div>
             <div class="persona">
                 <div class="persona-emoji">🏋️</div>
-                <h3>Athletes & Fitness-First People</h3>
-                <p>Training stress + sleep debt + hormones interact. Arc sees all three and predicts your recovery needs.</p>
+                <h3>Athletes & Fitness-First</h3>
+                <p>Training stress + sleep + hormones interact. Arc sees all three. Predicts recovery needs. Adapts recommendations daily.</p>
             </div>
             <div class="persona">
                 <div class="persona-emoji">👨‍🍳</div>
                 <h3>Nutritionists & Meal Planners</h3>
-                <p>Plan meals that fit your phase, macros, pantry, and budget. No generic "eat this" advice.</p>
+                <p>Plan meals phase-aware, macro-optimized, pantry-first. No generic "eat this" advice. Real personalization.</p>
             </div>
             <div class="persona">
                 <div class="persona-emoji">🔬</div>
                 <h3>People Tracking Symptoms</h3>
-                <p>Log symptoms, find patterns, share data with your doctor. Arc surfaces correlations you'd miss.</p>
+                <p>Log symptoms daily. Arc finds patterns you'd miss. Share data with your doctor. Test hypotheses (e.g., "does magnesium help?").</p>
             </div>
             <div class="persona">
                 <div class="persona-emoji">📊</div>
                 <h3>Quantified Self People</h3>
-                <p>All your data in one place (sleep, HRV, HR, meals, workouts, supplements, symptoms). Real synthesis, not dashboards.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why It Matters -->
-    <section class="container">
-        <h2>Why Arc Matters</h2>
-        <div class="why-grid">
-            <div class="why-item">
-                <div class="why-number">1</div>
-                <h3>Synthesis Beats Data</h3>
-                <p>Your cycle phase + sleep quality + workout intensity all interact. Arc understands the connections.</p>
-            </div>
-            <div class="why-item">
-                <div class="why-number">2</div>
-                <h3>Privacy by Default</h3>
-                <p>All data stays in your browser. No user database. No tracking. No surveillance.</p>
-            </div>
-            <div class="why-item">
-                <div class="why-number">3</div>
-                <h3>One Coherent Voice</h3>
-                <p>15 agents, one snapshot, one recommendation. No conflicting advice.</p>
-            </div>
-            <div class="why-item">
-                <div class="why-number">4</div>
-                <h3>Personalization Without Asking</h3>
-                <p>Arc learns as you use it. The more you log, the better it understands you.</p>
+                <p>Own all your health data. Real synthesis, not dashboards. See how domains actually interact.</p>
             </div>
         </div>
     </section>
@@ -519,65 +889,61 @@
     <!-- Stats -->
     <section class="stats">
         <div class="container">
-            <h2 style="margin-bottom: 50px;">By The Numbers</h2>
+            <h2 style="color: var(--text); margin-bottom: 50px;">By The Numbers</h2>
             <div class="stats-grid">
                 <div class="stat">
                     <div class="stat-number">15</div>
-                    <div class="stat-label">Specialized AI Agents</div>
+                    <div class="stat-label">Specialized Agents</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">16</div>
-                    <div class="stat-label">localStorage Data Stores</div>
+                    <div class="stat-label">Data Stores</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">100+</div>
-                    <div class="stat-label">Git Commits (Production Ready)</div>
+                    <div class="stat-label">Git Commits</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">0</div>
-                    <div class="stat-label">Build Steps Required</div>
+                    <div class="stat-label">Build Steps</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5 min</div>
+                    <div class="stat-label">Local Setup Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Privacy (Browser)</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack -->
-    <section class="container">
-        <h2>Built With</h2>
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">Production-ready, open-source, privacy-first</p>
-        <div class="tech-stack">
-            <div class="tech-badge">React 18 (UMD)</div>
-            <div class="tech-badge">Babel Standalone</div>
-            <div class="tech-badge">Flask</div>
-            <div class="tech-badge">Serverless (Vercel)</div>
-            <div class="tech-badge">Claude Haiku API</div>
-            <div class="tech-badge">localStorage</div>
-            <div class="tech-badge">Google Sheets (optional)</div>
-            <div class="tech-badge">Google Calendar (optional)</div>
-            <div class="tech-badge">PWA (installable)</div>
-            <div class="tech-badge">MIT License</div>
         </div>
     </section>
 
     <!-- Getting Started -->
     <section class="container">
-        <h2>Get Started in 5 Minutes</h2>
+        <h2>Get Started</h2>
+        <div class="section-intro">
+            Three ways to run Arc Agents.
+        </div>
         <div class="features">
             <div class="feature">
-                <h3>Option 1: Self-Host</h3>
-                <p><strong>Local:</strong> Clone the repo, install Python deps, run <code>python api/index.py</code>, visit http://localhost:5000</p>
+                <h3>💻 Local (5 min)</h3>
+                <p><code>git clone</code> → <code>pip install -r requirements.txt</code> → <code>python api/index.py</code> → http://localhost:5000</p>
+                <p style="margin-top: 10px; font-size: 13px;">Perfect for: Development, privacy-first, testing.</p>
             </div>
             <div class="feature">
-                <h3>Option 2: Deploy to Vercel</h3>
-                <p><strong>Cloud:</strong> Fork the repo, push to GitHub, deploy to Vercel, set your API key. Live in 2 minutes.</p>
+                <h3>☁️ Vercel (2 min)</h3>
+                <p>Fork → Push to GitHub → Deploy to Vercel → Set API key. Live instantly.</p>
+                <p style="margin-top: 10px; font-size: 13px;">Perfect for: Production, sharing, easy updates.</p>
             </div>
             <div class="feature">
-                <h3>Option 3: Docker</h3>
-                <p><strong>Container:</strong> Build the Docker image, run with your API key. Works anywhere.</p>
+                <h3>🐳 Docker (5 min)</h3>
+                <p>Build image → Run with API key. Works anywhere Docker runs.</p>
+                <p style="margin-top: 10px; font-size: 13px;">Perfect for: Self-hosting, Kubernetes, hybrid setups.</p>
             </div>
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="https://github.com/yourusername/arc-agents-public#setup" class="btn btn-primary">View Setup Instructions</a>
+            <a href="https://github.com/yourusername/arc-agents-public#setup" class="btn btn-primary">View Full Setup Guide</a>
         </div>
     </section>
 
@@ -585,7 +951,7 @@
     <section style="text-align: center; padding: 100px 20px; background: var(--primary); color: white;">
         <div class="container">
             <h2 style="color: white; margin-bottom: 20px;">Ready to synthesize your health data?</h2>
-            <p style="font-size: 18px; margin-bottom: 30px;">Arc is open-source, privacy-first, and built for you to own your health data.</p>
+            <p style="font-size: 18px; margin-bottom: 30px;">Arc is open-source, privacy-first, built for you to own your health data.</p>
             <div class="cta-buttons">
                 <a href="https://github.com/yourusername/arc-agents-public" class="btn btn-primary">View on GitHub</a>
                 <a href="https://github.com/yourusername/arc-agents-public#readme" class="btn btn-secondary">Read the Docs</a>
@@ -596,8 +962,9 @@
     <!-- Footer -->
     <footer>
         <p>Arc Agents — AI-powered lifestyle orchestration</p>
-        <p>Open source | <a href="https://github.com/yourusername/arc-agents-public">GitHub</a> | MIT License</p>
-        <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">Built with React, Flask, Claude Haiku, and a lot of coffee.</p>
+        <p>15 agents • 16 data stores • Privacy-first • Open source</p>
+        <p><a href="https://github.com/yourusername/arc-agents-public">GitHub</a> | <a href="https://github.com/yourusername/arc-agents-public/blob/main/LICENSE">MIT License</a></p>
+        <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">Built with React, Flask, Claude, and a lot of health data.</p>
     </footer>
 </body>
 </html>
