@@ -331,11 +331,11 @@ Arc uses **Claude Haiku** (fast, cheap, capable):
 
 This started as a personal need: I had health data scattered across 5 apps, none of them understood my cycle, all the advice was generic.
 
-I built Arc to solve my problem. Then realized it could solve others' too. Open-sourced it to teach builders how to make AI products that actually work (not just chatbots).
+I built Arc to solve my problem. Then realized it could solve others' too. Open-sourced it because I believe in privacy-first health tech.
 
 The real innovation isn't the AI—it's the **synthesis**. One agent seeing one thing is obvious. 15 agents reading the same snapshot, coordinating intelligently, giving you one coherent action—that's the product.
 
-**Read the full journey:** [7-part Substack series on building Arc](https://substack.com/@hrishita)
+**Follow the journey:** [Substack series on building Arc Agents](https://substack.com/@hrishita)
 
 ---
 

@@ -189,19 +189,9 @@ This codebase demonstrates:
 
 ---
 
-## Articles & Learning
+## Learning & Articles
 
-This repo ships with a **7-part article series** documenting the journey:
-
-1. **"I Stopped Tracking My Health and Started Automating My Decisions"** — The problem + why AI synthesis beats dashboards
-2. **"Cycle Intelligence: Teaching AI to Understand Hormonal Patterns"** — Data science: pattern recognition across time
-3. **"Multi-Agent Synthesis: When One AI Isn't Enough"** — AI architecture: agents with shared context
-4. **"LocalStorage is Your Backend: Building AI Apps With Real Constraints"** — Engineering: pragmatic design
-5. **"From Raw Data to Recommendations: The 80% Problem"** — Product thinking: why data synthesis is hard
-6. **"Building in Public: Open-Sourcing Arc"** — Community + career signals
-7. **"From AI Tool to AI Product: What's Actually Different?"** — Meta-learnings for AI product builders
-
-**Read the outlines and key ideas in [`/docs/articles/`](docs/articles)**
+The journey behind Arc Agents is documented in a **7-part Substack series** exploring AI product design, multi-agent systems, and building with real constraints. [Follow along →](https://substack.com/@hrishita)
 
 ---
 
