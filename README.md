@@ -193,15 +193,6 @@ vercel
 
 ---
 
-## What You'll Learn (If You're Building AI Products)
-
-This codebase demonstrates:
-
-- **Multi-agent coordination** without explicit function-calling (each agent sees the full context)
-- **Real-world AI constraints** (token limits, localStorage size, response latency)
-- **User-centric synthesis** (how to surface AI outputs that feel actionable, not overwhelming)
-- **Privacy-first architecture** (keeping user data off cloud servers)
-- **Pragmatic fullstack** (React SPA with no build, Flask serverless, Claude API)
 
 ---
 

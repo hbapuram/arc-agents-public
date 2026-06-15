@@ -326,13 +326,11 @@ Arc uses **Claude Haiku** (fast, cheap, capable):
 
 ---
 
-## The Story Behind Arc
+## The Core Innovation
 
-This started as a personal need: I had health data scattered across 5 apps, none of them understood my cycle, all the advice was generic.
+The real power isn't individual agents—it's the **synthesis**. One agent seeing one thing is obvious. 15 agents reading the same health snapshot, coordinating intelligently without explicit communication, giving you one coherent action—that's the product.
 
-I built Arc to solve my problem. Then realized it could solve others' too. Open-sourced it because I believe in privacy-first health tech.
-
-The real innovation isn't the AI—it's the **synthesis**. One agent seeing one thing is obvious. 15 agents reading the same snapshot, coordinating intelligently, giving you one coherent action—that's the product.
+This is what separates Arc from single-agent chatbots or dashboards that don't understand relationships between health domains.
 
 
 ---
