@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eve · Arc</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="/icon.svg">
+    <link rel="apple-touch-icon" href="/icon.svg">
+    <meta name="theme-color" content="#f7f4ef">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Arc">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #f7f4ef;
+            --surface: #ffffff;
+            --text: #2a2a2a;
+            --muted: #8a8a8a;
+            --border: #e0d9ce;
+            --eve: #4A5A7A;
+            --eve-light: rgba(74, 90, 122, 0.08);
+        }
+        [data-theme="dark"] {
+            --bg: #1a1a1a;
+            --surface: #2a2a2a;
+            --text: #f0f0f0;
+            --muted: #a0a0a0;
+            --border: #3a3a3a;
+        }
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface);
+        }
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(135deg, var(--eve-light) 0%, rgba(255,255,255,0) 100%);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .header-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text);
+        }
+        .header-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            font-family: "DM Mono", monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4caf50;
+        }
+        .agent-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+        .chat-log {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.user { justify-content: flex-end; }
+        .message-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .message.user .message-bubble {
+            background: var(--eve);
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+        .message.assistant .message-bubble {
+            background: var(--eve-light);
+            color: var(--text);
+            border-bottom-left-radius: 4px;
+            border: 1px solid rgba(74, 90, 122, 0.2);
+        }
+        .chat-composer {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        .input-group { flex: 1; }
+        .input-field {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            background: var(--surface);
+            resize: none;
+            max-height: 100px;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--eve);
+            box-shadow: 0 0 0 2px rgba(74, 90, 122, 0.1);
+        }
+        .send-button {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            border: none;
+            background: var(--eve);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+        .send-button:hover:not(:disabled) {
+            background: #3a4a6a;
+            transform: translateY(-1px);
+        }
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .loading-message {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--eve-light);
+            border-radius: 14px;
+            border: 1px solid rgba(74, 90, 122, 0.2);
+            width: fit-content;
+        }
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--eve);
+            animation: bounce 1.4s infinite;
+        }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        .arc-brand {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: fixed; top: 0; left: 0; right: 0; background: #fff3cd; color: #856404; padding: 12px; text-align: center; font-size: 13px; z-index: 1000; border-bottom: 1px solid #ffc107;">
+        💡 <strong>Tip:</strong> Use the main app for the best experience. <a href="/" style="color: #0066cc; text-decoration: underline;">Go to Arc</a>
+    </div>
+    <div class="chat-container" style="margin-top: 40px;">
+        <div class="chat-header">
+            <div class="header-content">
+                <div>
+                    <div class="arc-brand">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M3 19 A 11 11 0 1 1 21 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                        Arc
+                    </div>
+                    <div class="header-title">Eve</div>
+                    <div class="header-subtitle">Evening Coach</div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+            <div class="agent-status">
+                <span id="demo-indicator" style="display:none;">📍 Demo Mode</span>
+                <span id="status-text">Loading context...</span>
+            </div>
+        </div>
+
+        <div class="chat-log" id="chat-log">
+            <div class="message assistant">
+                <div class="message-bubble">
+                    Hey! I'm Eve, your evening coach. I help you wind down for the night. Tell me how your day went, and I'll suggest calming activities and sleep prep tips based on your energy and tomorrow's schedule!
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-composer">
+            <div class="input-group">
+                <textarea
+                    id="message-input"
+                    class="input-field"
+                    placeholder="How was your day?"
+                    rows="1"
+                    maxlength="500"
+                ></textarea>
+            </div>
+            <button id="send-button" class="send-button">↑</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "";
+        const AGENT_NAME = "eve";
+        let systemPrompt = "";
+        let conversationHistory = [];
+        let isLoading = false;
+
+        async function initializeAgent() {
+            try {
+                const response = await fetch(`${API_BASE}/api/context/${AGENT_NAME}`);
+                const data = await response.json();
+                systemPrompt = data.system;
+                if (data.demo) document.getElementById("demo-indicator").style.display = "inline";
+                document.getElementById("status-text").textContent = `Ready • ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            } catch (error) {
+                document.getElementById("status-text").textContent = `Error: ${error.message}`;
+            }
+        }
+
+        function addMessageToUI(content, role) {
+            const chatLog = document.getElementById("chat-log");
+            const message = document.createElement("div");
+            message.className = `message ${role}`;
+            const bubble = document.createElement("div");
+            bubble.className = "message-bubble";
+            bubble.textContent = content;
+            message.appendChild(bubble);
+            chatLog.appendChild(message);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function showLoadingIndicator() {
+            const chatLog = document.getElementById("chat-log");
+            const message = document.createElement("div");
+            message.className = "message assistant";
+            message.innerHTML = `<div class="loading-message"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+            message.id = "loading-message";
+            chatLog.appendChild(message);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function removeLoadingIndicator() {
+            const loadingMsg = document.getElementById("loading-message");
+            if (loadingMsg) loadingMsg.remove();
+        }
+
+        async function sendMessage(userMessage) {
+            if (!userMessage.trim() || isLoading) return;
+            isLoading = true;
+            addMessageToUI(userMessage, "user");
+            conversationHistory.push({ role: "user", content: userMessage });
+            showLoadingIndicator();
+
+            try {
+                const response = await fetch(`${API_BASE}/api/chat`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        system: systemPrompt,
+                        messages: conversationHistory,
+                        agent: AGENT_NAME
+                    })
+                });
+                const data = await response.json();
+                conversationHistory.push({ role: "assistant", content: data.reply });
+                removeLoadingIndicator();
+                addMessageToUI(data.reply, "assistant");
+            } catch (error) {
+                removeLoadingIndicator();
+                addMessageToUI(`Error: ${error.message}`, "assistant");
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        document.getElementById("send-button").addEventListener("click", () => {
+            const input = document.getElementById("message-input");
+            sendMessage(input.value.trim());
+            input.value = "";
+        });
+
+        document.getElementById("message-input").addEventListener("keydown", (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                const input = document.getElementById("message-input");
+                sendMessage(input.value.trim());
+                input.value = "";
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initializeAgent();
+            document.getElementById("message-input").focus();
+        });
+    </script>
+</body>
+</html>

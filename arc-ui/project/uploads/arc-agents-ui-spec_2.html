@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arc Agents — Frontend UI Spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F2ED;
+  --surface: #FDFCFA;
+  --border: #DDD8D0;
+  --text: #1C1916;
+  --muted: #8A8278;
+  --deep: #1A3A2A;
+  --terra: #B5543F;
+  --sage: #4A7A5A;
+  --amber: #C4884A;
+  --lav: #5A4F7A;
+  --blue: #2E6B9E;
+  --teal: #2A6B6B;
+  --gold: #9A7B3F;
+}
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; }
+
+/* ─── HEADER ─── */
+.header { background: var(--deep); padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; }
+.header-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #fff; font-weight: 300; letter-spacing: 0.02em; }
+.header-title em { font-style: italic; }
+.header-meta { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+/* ─── INTRO ─── */
+.intro { max-width: 900px; margin: 0 auto; padding: 48px 32px 32px; }
+.intro-eyebrow { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terra); margin-bottom: 12px; }
+.intro-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; line-height: 1.05; margin-bottom: 16px; color: var(--text); }
+.intro-title em { font-style: italic; color: var(--deep); }
+.intro-body { font-size: 13px; color: var(--muted); line-height: 1.9; max-width: 680px; font-weight: 300; }
+.intro-body strong { color: var(--text); font-weight: 500; }
+
+/* ─── TOC ─── */
+.toc-wrap { max-width: 900px; margin: 0 auto; padding: 0 32px 40px; }
+.toc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; text-decoration: none; display: block; }
+.toc-item:hover { border-color: var(--deep); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.toc-num { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 5px; }
+.toc-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 400; color: var(--text); line-height: 1.2; }
+
+/* ─── SECTION ─── */
+.section { max-width: 900px; margin: 0 auto; padding: 0 32px 60px; scroll-margin-top: 80px; }
+.section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; line-height: 1.1; margin-bottom: 8px; }
+.section-desc { font-size: 12.5px; color: var(--muted); line-height: 1.85; max-width: 640px; font-weight: 300; margin-bottom: 28px; }
+
+/* ─── CARDS ─── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; margin-bottom: 10px; }
+.card-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.card-h { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; margin-bottom: 8px; }
+
+/* ─── MOCKUPS ─── */
+.mockup { background: #1C1916; border-radius: 14px; overflow: hidden; margin: 16px 0; box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+.mockup-bar { background: #252220; padding: 10px 16px; display: flex; align-items: center; gap: 6px; }
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-body { padding: 16px; }
+
+/* phone mockup */
+.phone-frame { width: 280px; background: #1C1916; border-radius: 28px; overflow: hidden; margin: 0 auto; box-shadow: 0 12px 40px rgba(0,0,0,0.22); }
+.phone-notch { background: #1C1916; height: 28px; display: flex; align-items: center; justify-content: center; }
+.phone-notch-inner { width: 80px; height: 14px; background: #0d0d0d; border-radius: 7px; }
+.phone-screen { background: #F5F2ED; min-height: 480px; }
+
+/* timeline bar */
+.timeline-bar { display: flex; align-items: stretch; gap: 2px; margin: 14px 0; }
+.tbar-seg { flex: 1; border-radius: 4px; height: 32px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.06em; color: rgba(255,255,255,0.7); text-transform: uppercase; cursor: default; }
+.tbar-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+/* agent chips */
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.chip { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 20px; border: 1px solid; display: flex; align-items: center; gap: 5px; }
+.chip-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+/* two col */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+/* rule block */
+.rule { background: #EEF5EE; border-left: 3px solid var(--sage); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+.rule.amber { background: #FDF6EC; border-left-color: var(--amber); }
+.rule.blue { background: #EEF3FA; border-left-color: var(--blue); }
+.rule.red { background: #FAEEE9; border-left-color: var(--terra); }
+.rule.lav { background: #F1EFF8; border-left-color: var(--lav); }
+.rule-lbl { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.rule-txt { font-size: 12px; line-height: 1.75; color: var(--text); font-weight: 300; }
+.rule-txt strong { font-weight: 500; }
+
+/* screen sim */
+.screen { background: var(--bg); border-radius: 10px; padding: 16px; font-size: 11.5px; }
+.screen-nav { display: flex; gap: 4px; margin-bottom: 14px; flex-wrap: wrap; }
+.snav { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: var(--surface); cursor: default; }
+.snav.active { background: var(--deep); color: #fff; border-color: var(--deep); }
+
+.feed-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; display: flex; gap: 10px; align-items: flex-start; }
+.feed-icon { width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.feed-body { flex: 1; min-width: 0; }
+.feed-agent { font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.feed-text { font-size: 11px; color: var(--text); line-height: 1.5; font-weight: 300; }
+.feed-time { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); margin-top: 3px; }
+
+.sched-block { display: flex; gap: 8px; margin-bottom: 4px; align-items: flex-start; }
+.sched-time { font-family: 'DM Mono', monospace; font-size: 8.5px; color: var(--muted); width: 38px; flex-shrink: 0; padding-top: 2px; }
+.sched-bar { width: 3px; border-radius: 3px; flex-shrink: 0; margin-top: 3px; align-self: stretch; min-height: 28px; }
+.sched-content { flex: 1; }
+.sched-title { font-size: 11px; font-weight: 500; color: var(--text); }
+.sched-sub { font-size: 10px; color: var(--muted); font-weight: 300; }
+
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0; }
+.stat-mini { background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 10px 11px; }
+.stat-mini-num { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: var(--deep); line-height: 1; }
+.stat-mini-lbl { font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+.notif { background: var(--deep); color: #fff; border-radius: 12px; padding: 10px 14px; margin: 6px 0; display: flex; gap: 10px; align-items: center; font-size: 11px; }
+.notif-icon { font-size: 16px; flex-shrink: 0; }
+.notif-body { flex: 1; }
+.notif-agent { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 2px; }
+.notif-text { color: rgba(255,255,255,0.9); line-height: 1.4; font-weight: 300; }
+
+/* tab spec table */
+.tab-spec { width: 100%; border-collapse: collapse; font-size: 12px; margin: 12px 0; }
+.tab-spec th { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 7px 12px; border-bottom: 1px solid var(--border); text-align: left; background: var(--bg); }
+.tab-spec td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text); font-weight: 300; line-height: 1.55; }
+.tab-spec tr:last-child td { border-bottom: none; }
+.tab-spec tr:hover td { background: var(--bg); }
+.td-name { font-weight: 500; font-size: 12.5px; }
+.td-tag { font-family: 'DM Mono', monospace; font-size: 7.5px; padding: 2px 7px; border-radius: 4px; border: 1px solid; white-space: nowrap; }
+
+/* flow diagram */
+.flow { display: flex; align-items: flex-start; gap: 0; margin: 14px 0; overflow-x: auto; }
+.flow-step { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.flow-node { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; text-align: center; min-width: 100px; max-width: 120px; }
+.flow-node-icon { font-size: 18px; margin-bottom: 4px; }
+.flow-node-lbl { font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.flow-node-name { font-size: 11.5px; font-weight: 500; color: var(--text); }
+.flow-arrow { display: flex; align-items: center; padding: 0 4px; color: var(--muted); font-size: 18px; align-self: center; }
+
+/* colour swatch row */
+.swatches { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+.swatch { width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: flex-end; padding: 3px; }
+.swatch-lbl { font-family: 'DM Mono', monospace; font-size: 7px; color: rgba(255,255,255,0.7); letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+
+/* interaction note */
+.ixn { display: flex; gap: 10px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 5px 0; font-size: 12px; }
+.ixn-trigger { width: 90px; font-family: 'DM Mono', monospace; font-size: 8.5px; color: var(--terra); flex-shrink: 0; line-height: 1.5; padding-top: 1px; }
+.ixn-body { flex: 1; color: var(--muted); font-weight: 300; line-height: 1.6; }
+.ixn-body strong { color: var(--text); font-weight: 500; }
+
+/* pill badge */
+.pill { display: inline-flex; align-items: center; gap: 4px; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 20px; border: 1px solid; }
+
+/* divider */
+hr.thin { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+/* sticky nav */
+.sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(245,242,237,0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; gap: 0; overflow-x: auto; }
+.snav-btn { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; color: var(--muted); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+.snav-btn:hover { color: var(--deep); border-bottom-color: var(--deep); }
+
+@media (max-width: 680px) {
+  .two, .three { grid-template-columns: 1fr; }
+  .toc-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .intro, .toc-wrap, .section { padding-left: 16px; padding-right: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-title">Arc Agents — <em>Frontend UI Specification</em></div>
+  <div class="header-meta">v1 · Visual Design Brief · 28 Agents · 6 Tabs</div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <a href="#overview" class="snav-btn">Overview</a>
+  <a href="#core-concept" class="snav-btn">Core Concept</a>
+  <a href="#tab-1" class="snav-btn">Tab 1 · Today</a>
+  <a href="#tab-2" class="snav-btn">Tab 2 · Health</a>
+  <a href="#tab-3" class="snav-btn">Tab 3 · Career</a>
+  <a href="#tab-4" class="snav-btn">Tab 4 · Life</a>
+  <a href="#tab-5" class="snav-btn">Tab 5 · Agents</a>
+  <a href="#tab-6" class="snav-btn">Tab 6 · Council</a>
+  <a href="#notifications" class="snav-btn">Notifications</a>
+  <a href="#design" class="snav-btn">Design System</a>
+  <a href="#handoff" class="snav-btn">Dev Handoff</a>
+</nav>
+
+<!-- INTRO -->
+<div class="intro" id="overview">
+  <div class="intro-eyebrow">Arc Agents · Frontend Design Brief</div>
+  <div class="intro-title">A dashboard that <em>lives with you</em><br>through the day</div>
+  <div class="intro-body">
+    This spec describes the visual and interaction design for the Arc Agents frontend — a single app that surfaces outputs from all <strong>28 agents</strong> across a <strong>6-tab navigation</strong>. The core design principle: the app is not a settings panel. It's a <strong>living briefing that changes state as the day progresses</strong> — morning looks different from evening, Monday looks different from Sunday. Agents push cards; the user pulls details. Notifications surface at the right moment, not all at once.
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-grid">
+    <a class="toc-item" href="#tab-1"><div class="toc-num">Tab 01</div><div class="toc-name">Today</div></a>
+    <a class="toc-item" href="#tab-2"><div class="toc-num">Tab 02</div><div class="toc-name">Health</div></a>
+    <a class="toc-item" href="#tab-3"><div class="toc-num">Tab 03</div><div class="toc-name">Career</div></a>
+    <a class="toc-item" href="#tab-4"><div class="toc-num">Tab 04</div><div class="toc-name">Life</div></a>
+    <a class="toc-item" href="#tab-5"><div class="toc-num">Tab 05</div><div class="toc-name">Agents</div></a>
+    <a class="toc-item" href="#tab-6"><div class="toc-num">Tab 06</div><div class="toc-name">Council</div></a>
+  </div>
+</div>
+
+<!-- ═══ CORE CONCEPT ═══ -->
+<div class="section" id="core-concept">
+  <div class="section-label">Concept</div>
+  <div class="section-title">The day as a living timeline</div>
+  <div class="section-desc">The app state changes throughout the day based on time + your Arc data. Not a static dashboard — a contextual companion. Here's the temporal model:</div>
+
+  <div class="card">
+    <div class="card-title">Day State Model — how the app changes over time</div>
+    <div class="tbar-label">6am → midnight</div>
+    <div class="timeline-bar">
+      <div class="tbar-seg" style="background: var(--deep); flex: 1.5;">Morning<br>Brief</div>
+      <div class="tbar-seg" style="background: var(--blue); flex: 3;">Work Day — Career Focus</div>
+      <div class="tbar-seg" style="background: var(--sage); flex: 2;">Afternoon — Health + Plan</div>
+      <div class="tbar-seg" style="background: var(--amber); flex: 2;">Evening — Life + Discover</div>
+      <div class="tbar-seg" style="background: var(--lav); flex: 1.5;">Wind-down</div>
+    </div>
+    <div class="two" style="margin-top: 10px;">
+      <div>
+        <div class="rule">
+          <div class="rule-lbl">6:00–9:00am · Morning Brief</div>
+          <div class="rule-txt"><strong>Nova's briefing dominates.</strong> Full-screen morning card: cycle phase pill, energy score, 3 priority tasks from Rex, Aria's top 2 news items, Nora's meal plan for the day, Felix's workout. One scroll covers your whole day.</div>
+        </div>
+        <div class="rule blue">
+          <div class="rule-lbl">9:00am–1:00pm · Work Focus</div>
+          <div class="rule-txt"><strong>Career tab floats to prominence.</strong> Kai's coaching card and Rex's plan are pinned at top of Today. Aria's briefing is expandable. Cleo shows job-match score. Vox drafts LinkedIn post if triggered.</div>
+        </div>
+      </div>
+      <div>
+        <div class="rule amber">
+          <div class="rule-lbl">5:00–8:00pm · Evening Wind-in</div>
+          <div class="rule-txt"><strong>Life tab rises.</strong> Ivy's Dublin suggestion, Bea's hobby nudge, Rue's social reminder if due, Finn's budget check-in. Sage's remaining schedule shows clearly. Halo's wind-down prompt arrives at 8pm.</div>
+        </div>
+        <div class="rule lav">
+          <div class="rule-lbl">9:00pm–midnight · Reflection</div>
+          <div class="rule-txt"><strong>Halo leads.</strong> Evening reflection prompt. Luna's mood check-in. Dusk's sleep signal. Habit completion ring. Sunday: Council summary card replaces the standard evening view.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 12px;">
+    <div class="card-title">Data flow — how agents feed the UI</div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-node-icon">🗄️</div>
+          <div class="flow-node-lbl">Source</div>
+          <div class="flow-node-name">Arc Data + APIs</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-node-icon">🤖</div>
+          <div class="flow-node-lbl">Agents</div>
+          <div class="flow-node-name">28 Python agents run</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-node-icon">📋</div>
+          <div class="flow-node-lbl">Output</div>
+          <div class="flow-node-name">Notion pages + JSON</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node" style="border-color: var(--deep);">
+          <div class="flow-node-icon">📱</div>
+          <div class="flow-node-lbl">App reads</div>
+          <div class="flow-node-name">Frontend fetches + displays</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-node-icon">🔔</div>
+          <div class="flow-node-lbl">Push</div>
+          <div class="flow-node-name">Notifications at right time</div>
+        </div>
+      </div>
+    </div>
+    <div class="rule" style="margin-top: 8px;">
+      <div class="rule-lbl">Implementation note for developer</div>
+      <div class="rule-txt">The frontend <strong>does not run agents</strong> — it reads their cached output. Agents write to Notion (and optionally a local JSON store). The app fetches from Notion API or a Flask endpoint and renders. Refresh happens on app open + every 15 minutes in background.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB 1 — TODAY ═══ -->
+<div class="section" id="tab-1">
+  <div class="section-label">Tab 01</div>
+  <div class="section-title">Today — <em>the living briefing</em></div>
+  <div class="section-desc">The home tab. Changes state through the day. This is where Nova assembles everything. It is not a news feed — it's a curated sequence of cards, ordered by time-of-day relevance, that collapses as you act on items.</div>
+
+  <div class="chips">
+    <span class="chip" style="color: var(--teal); border-color: rgba(42,107,107,0.3); background: rgba(42,107,107,0.06);"><span class="chip-dot" style="background:var(--teal)"></span>Nova · Briefing</span>
+    <span class="chip" style="color: var(--terra); border-color: rgba(181,84,63,0.3); background: rgba(181,84,63,0.06);"><span class="chip-dot" style="background:var(--terra)"></span>Sage · Day Plan</span>
+    <span class="chip" style="color: var(--teal); border-color: rgba(42,107,107,0.3); background: rgba(42,107,107,0.06);"><span class="chip-dot" style="background:var(--teal)"></span>Echo · Reminders</span>
+    <span class="chip" style="color: var(--lav); border-color: rgba(90,79,122,0.3); background: rgba(90,79,122,0.06);"><span class="chip-dot" style="background:var(--lav)"></span>Halo · Wind-down</span>
+    <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Flora · Phase</span>
+    <span class="chip" style="color: var(--amber); border-color: rgba(196,136,74,0.3); background: rgba(196,136,74,0.06);"><span class="chip-dot" style="background:var(--amber)"></span>Finn · Budget pulse</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="card">
+        <div class="card-title">Morning state (6–9am) · screen layout</div>
+        <div class="screen">
+          <div style="background: var(--deep); border-radius: 10px; padding: 14px; margin-bottom: 10px; color: #fff;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px;">Nova · Good morning, Hrish</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; margin-bottom: 8px; line-height: 1.2;">Follicular phase · Day 6<br><em>High energy, focus mode on</em></div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);">🔥 3 priorities today</span>
+              <span style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);">🥗 Breakfast: oats + kefir</span>
+              <span style="font-size: 9px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);">💪 Strength session</span>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(26,58,42,0.08);">📅</div>
+            <div class="feed-body">
+              <div class="feed-agent">Sage · Your day</div>
+              <div class="feed-text">8 blocks · 6:30am start · 3 deep work windows · grocery run 5pm</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(46,107,158,0.08);">📰</div>
+            <div class="feed-body">
+              <div class="feed-agent">Aria · 2 items</div>
+              <div class="feed-text">AI engineering roles up 34% in Dublin · ECB holds rates</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(196,136,74,0.08);">💰</div>
+            <div class="feed-body">
+              <div class="feed-agent">Finn · Budget</div>
+              <div class="feed-text">€620 spent this month · On track · €380 remaining</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Evening state (7–10pm) · screen layout</div>
+        <div class="screen">
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(74,122,90,0.08);">🌿</div>
+            <div class="feed-body">
+              <div class="feed-agent">Halo · Wind-down</div>
+              <div class="feed-text">How was your day? 3 things that went well?</div>
+              <div style="display: flex; gap: 5px; margin-top: 6px;">
+                <span style="font-size: 9px; padding: 3px 8px; border-radius: 6px; background: var(--deep); color: #fff; cursor: default;">Log reflection</span>
+                <span style="font-size: 9px; padding: 3px 8px; border-radius: 6px; background: var(--border); cursor: default;">Later</span>
+              </div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(154,123,63,0.08);">🎭</div>
+            <div class="feed-body">
+              <div class="feed-agent">Ivy · Tonight in Dublin</div>
+              <div class="feed-text">Contemporary art opening · Roe & Co distillery tour · Yoga at Flow</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(90,79,122,0.08);">🎸</div>
+            <div class="feed-body">
+              <div class="feed-agent">Bea · Hobby nudge</div>
+              <div class="feed-text">You haven't played guitar in 9 days. Short session tonight?</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(90,79,122,0.08);">💜</div>
+            <div class="feed-body">
+              <div class="feed-agent">Luna · Check-in</div>
+              <div class="feed-text">Energy today? Mood? (tap to log in 10 seconds)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Schedule strip — intraday view (below the feed)</div>
+    <div class="screen">
+      <div class="screen-nav">
+        <span class="snav active">Today</span>
+        <span class="snav">Tomorrow</span>
+        <span class="snav">Week</span>
+      </div>
+      <div class="sched-block">
+        <div class="sched-time">6:30</div>
+        <div class="sched-bar" style="background: var(--deep);"></div>
+        <div class="sched-content"><div class="sched-title">Morning routine + brief</div><div class="sched-sub">Sage · 45 min</div></div>
+      </div>
+      <div class="sched-block">
+        <div class="sched-time">8:00</div>
+        <div class="sched-bar" style="background: var(--blue);"></div>
+        <div class="sched-content"><div class="sched-title">Deep work — model review</div><div class="sched-sub">Rex · AXA task · 2hr</div></div>
+      </div>
+      <div class="sched-block">
+        <div class="sched-time">12:30</div>
+        <div class="sched-bar" style="background: var(--sage);"></div>
+        <div class="sched-content"><div class="sched-title">Lunch — lentil soup + sourdough</div><div class="sched-sub">Nora · 650 kcal</div></div>
+      </div>
+      <div class="sched-block">
+        <div class="sched-time">17:30</div>
+        <div class="sched-bar" style="background: var(--amber);"></div>
+        <div class="sched-content"><div class="sched-title">Grocery run — Lidl</div><div class="sched-sub">Nora · list ready · €35 budget</div></div>
+      </div>
+      <div class="sched-block">
+        <div class="sched-time">19:00</div>
+        <div class="sched-bar" style="background: var(--terra);"></div>
+        <div class="sched-content"><div class="sched-title">Strength workout</div><div class="sched-sub">Felix · follicular plan · 40 min</div></div>
+      </div>
+    </div>
+    <div class="rule" style="margin-top: 10px;">
+      <div class="rule-lbl">Design note</div>
+      <div class="rule-txt">Schedule strip scrolls horizontally to show the full day. <strong>Current time is marked with a live red line</strong> — blocks in the past dim slightly. Tapping any block expands it to show agent detail, options to reschedule, or mark done. The strip never disappears — it's always accessible by scrolling down past the feed cards.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Interaction states on feed cards</div>
+    <div class="ixn"><div class="ixn-trigger">Tap card</div><div class="ixn-body"><strong>Expands inline</strong> — shows full agent output text without leaving the tab. A "View in Notion" link at bottom for full detail.</div></div>
+    <div class="ixn"><div class="ixn-trigger">Swipe left</div><div class="ixn-body"><strong>Dismiss / done</strong> — card fades out with a subtle green flash. Logged as "acted on" for Mirror's feedback learning.</div></div>
+    <div class="ixn"><div class="ixn-trigger">Swipe right</div><div class="ixn-body"><strong>Snooze 2 hours</strong> — card moves to bottom of feed with a small clock badge. Good for reminders and nudges.</div></div>
+    <div class="ixn"><div class="ixn-trigger">Long press</div><div class="ixn-body"><strong>Options sheet</strong> — "Ignore always", "Remind tomorrow", "Send to agent" (opens chat with that agent), "View history".</div></div>
+    <div class="ixn"><div class="ixn-trigger">Pull to refresh</div><div class="ixn-body"><strong>Re-fetch from Notion</strong> — re-runs the frontend data pull. Shows last-updated timestamp below the nav bar.</div></div>
+  </div>
+</div>
+
+<!-- ═══ TAB 2 — HEALTH ═══ -->
+<div class="section" id="tab-2">
+  <div class="section-label">Tab 02</div>
+  <div class="section-title">Health — <em>body, food, fitness, cycle</em></div>
+  <div class="section-desc">5 agents feed this tab. The visual anchor is a cycle phase arc — a circular or ring indicator that immediately shows where you are in the month and what that means for energy, food, and movement.</div>
+
+  <div class="chips">
+    <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Nora · Food OS</span>
+    <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Felix · Fitness</span>
+    <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Luna · Wellness</span>
+    <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Flora · Cycle</span>
+    <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Dusk · Sleep</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="card">
+        <div class="card-title">Top card — cycle + energy anchor</div>
+        <div class="screen">
+          <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; display: flex; gap: 14px; align-items: center;">
+            <!-- cycle ring placeholder -->
+            <svg width="64" height="64" viewBox="0 0 64 64" style="flex-shrink:0">
+              <circle cx="32" cy="32" r="26" fill="none" stroke="#DDD8D0" stroke-width="5"/>
+              <circle cx="32" cy="32" r="26" fill="none" stroke="#4A7A5A" stroke-width="5" stroke-dasharray="100 64" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+              <text x="32" y="36" text-anchor="middle" font-size="11" fill="#1C1916" font-family="Cormorant Garamond" font-style="italic">Day 6</text>
+            </svg>
+            <div>
+              <div style="font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">Flora · Cycle phase</div>
+              <div style="font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px;">Follicular ✦ High energy</div>
+              <div style="font-size: 10.5px; color: var(--muted); font-weight: 300; line-height: 1.5;">Best for strength, deep work,<br>new projects. Next phase in ~8 days.</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-mini"><div class="stat-mini-num">1,840</div><div class="stat-mini-lbl">kcal target</div></div>
+            <div class="stat-mini"><div class="stat-mini-num">8,200</div><div class="stat-mini-lbl">steps</div></div>
+            <div class="stat-mini"><div class="stat-mini-num">6</div><div class="stat-mini-lbl">water</div></div>
+            <div class="stat-mini"><div class="stat-mini-num">7.2h</div><div class="stat-mini-lbl">sleep</div></div>
+          </div>
+        </div>
+        <div class="rule" style="margin-top: 8px;">
+          <div class="rule-lbl">Design note</div>
+          <div class="rule-txt">The ring fills clockwise showing progress through the ~28-day cycle. Colour shifts subtly by phase: green (follicular) → warm amber (ovulatory) → muted rose (luteal) → deep red (menstrual). The stats row below it updates from Arc's fit-daily-logs in real time.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Sub-tabs within Health</div>
+        <table class="tab-spec">
+          <tr>
+            <th>Sub-tab</th>
+            <th>Agent(s)</th>
+            <th>Primary display</th>
+          </tr>
+          <tr>
+            <td class="td-name">Meals</td>
+            <td><span class="td-tag" style="color:var(--sage);border-color:rgba(74,122,90,0.3);background:rgba(74,122,90,0.06)">Nora</span></td>
+            <td>Today's 3 meals with macros · tap to see recipe · grocery list button</td>
+          </tr>
+          <tr>
+            <td class="td-name">Fitness</td>
+            <td><span class="td-tag" style="color:var(--sage);border-color:rgba(74,122,90,0.3);background:rgba(74,122,90,0.06)">Felix</span></td>
+            <td>Today's workout card · steps ring · energy balance bar (eaten vs burnt)</td>
+          </tr>
+          <tr>
+            <td class="td-name">Wellness</td>
+            <td><span class="td-tag" style="color:var(--lav);border-color:rgba(90,79,122,0.3);background:rgba(90,79,122,0.06)">Luna</span></td>
+            <td>Habit completion circles · mood log · weekly streak visual</td>
+          </tr>
+          <tr>
+            <td class="td-name">Cycle</td>
+            <td><span class="td-tag" style="color:var(--sage);border-color:rgba(74,122,90,0.3);background:rgba(74,122,90,0.06)">Flora</span></td>
+            <td>Full phase report · phase-specific recommendations · symptom log</td>
+          </tr>
+          <tr>
+            <td class="td-name">Sleep</td>
+            <td><span class="td-tag" style="color:var(--lav);border-color:rgba(90,79,122,0.3);background:rgba(90,79,122,0.06)">Dusk</span></td>
+            <td>Last night quality score · 7-day sleep chart · wind-down reminder trigger</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Meals display — Nora's output format</div>
+    <div class="screen">
+      <div class="screen-nav">
+        <span class="snav active">Meals</span>
+        <span class="snav">Fitness</span>
+        <span class="snav">Wellness</span>
+        <span class="snav">Cycle</span>
+        <span class="snav">Sleep</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+          <div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Breakfast</div>
+          <div style="font-size: 11px; font-weight: 500; margin-bottom: 2px;">Oats + kefir + blueberries</div>
+          <div style="font-size: 9.5px; color: var(--muted);">410 kcal · 18g protein</div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+          <div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Lunch</div>
+          <div style="font-size: 11px; font-weight: 500; margin-bottom: 2px;">Dal + basmati + spinach</div>
+          <div style="font-size: 9.5px; color: var(--muted);">620 kcal · 26g protein</div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+          <div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Dinner</div>
+          <div style="font-size: 11px; font-weight: 500; margin-bottom: 2px;">Paneer tikka + veggies</div>
+          <div style="font-size: 9.5px; color: var(--muted);">580 kcal · 32g protein</div>
+        </div>
+      </div>
+      <div style="background: var(--bg); border-radius: 7px; padding: 9px 12px; display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 10.5px; color: var(--muted);">Total · <strong style="color: var(--text);">1,610 kcal</strong> · 76g protein</span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--sage); letter-spacing: 0.08em;">GROCERY LIST →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB 3 — CAREER ═══ -->
+<div class="section" id="tab-3">
+  <div class="section-label">Tab 03</div>
+  <div class="section-title">Career — <em>transition intelligence</em></div>
+  <div class="section-desc">6 agents here. This tab is your AI Engineer transition command centre. The anchor metric is your skill-gap score — how close you are to your target role profile. It should feel like a career cockpit, not a to-do list.</div>
+
+  <div class="chips">
+    <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Aria · News</span>
+    <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Kai · Coach</span>
+    <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Rex · Planner</span>
+    <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Scout · Learning</span>
+    <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Cleo · Jobs</span>
+    <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Vox · Presence</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="card">
+        <div class="card-title">Skill gap arc — the anchor visual</div>
+        <div class="screen">
+          <div style="background: var(--deep); border-radius: 10px; padding: 16px; color: #fff; text-align: center; margin-bottom: 10px;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px;">Cleo · Role match score</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 48px; font-style: italic; line-height: 1; color: #fff;">74<span style="font-size: 22px; opacity: 0.5;">%</span></div>
+            <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 4px;">AI Engineer · FinTech · Dublin</div>
+            <div style="margin-top: 12px; background: rgba(255,255,255,0.08); border-radius: 6px; padding: 8px; text-align: left;">
+              <div style="font-size: 9px; color: rgba(255,255,255,0.45); font-family: 'DM Mono', monospace; letter-spacing: 0.1em; margin-bottom: 6px; text-transform: uppercase;">Top gaps to close</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.75); margin-bottom: 3px; font-weight: 300;">→ LangChain (Ch 5 · in plan)</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.75); margin-bottom: 3px; font-weight: 300;">→ Production deployment (Ch 15)</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.75); font-weight: 300;">→ Vector databases (Ch 7)</div>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(46,107,158,0.08);">🎓</div>
+            <div class="feed-body">
+              <div class="feed-agent">Scout · Today's learning</div>
+              <div class="feed-text">Chapter 2, Session 1 — RAG basics + arc_export.js · 45 min block scheduled</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Sub-tabs within Career</div>
+        <table class="tab-spec">
+          <tr><th>Sub-tab</th><th>Agent</th><th>Display</th></tr>
+          <tr>
+            <td class="td-name">Briefing</td>
+            <td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Aria</span></td>
+            <td>Today's AI/FinTech news · 3-5 cards · tap to expand · source link</td>
+          </tr>
+          <tr>
+            <td class="td-name">Coaching</td>
+            <td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Kai</span></td>
+            <td>Today's focus + motivation + 1 action · past messages collapsible below</td>
+          </tr>
+          <tr>
+            <td class="td-name">Plan</td>
+            <td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Rex</span></td>
+            <td>Today's 3 priorities · week view toggle · AXA vs personal split</td>
+          </tr>
+          <tr>
+            <td class="td-name">Learning</td>
+            <td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Scout</span></td>
+            <td>Chapter progress bar · today's session card · resources list · streak</td>
+          </tr>
+          <tr>
+            <td class="td-name">Jobs</td>
+            <td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Cleo</span></td>
+            <td>Matched roles today · skill gap score · trending skills in JDs</td>
+          </tr>
+          <tr>
+            <td class="td-name">Presence</td>
+            <td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Vox</span></td>
+            <td>Draft LinkedIn post · GitHub activity graph · last post date</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule blue" style="margin-top: 8px;">
+    <div class="rule-lbl">Key design principle for Career tab</div>
+    <div class="rule-txt">Aria's news should display as <strong>scannable cards, not a wall of text</strong>. Each card: headline (max 2 lines) · source pill · why-it-matters line in muted text · tap to expand full summary. Cards are horizontally scrollable in a "top stories" rail at the top of the Briefing sub-tab, with older stories in a vertical list below.</div>
+  </div>
+</div>
+
+<!-- ═══ TAB 4 — LIFE ═══ -->
+<div class="section" id="tab-4">
+  <div class="section-label">Tab 04</div>
+  <div class="section-title">Life — <em>budget, home, discovery</em></div>
+  <div class="section-desc">The practical layer. Finance, chores, fashion, travel, social — everything that makes day-to-day life work. The anchor card here is Finn's financial health score, displayed prominently because it touches every other decision.</div>
+
+  <div class="chips">
+    <span class="chip" style="color: var(--terra); border-color: rgba(181,84,63,0.3); background: rgba(181,84,63,0.06);"><span class="chip-dot" style="background:var(--terra)"></span>Finn · Finance</span>
+    <span class="chip" style="color: var(--terra); border-color: rgba(181,84,63,0.3); background: rgba(181,84,63,0.06);"><span class="chip-dot" style="background:var(--terra)"></span>Ember · Chores</span>
+    <span class="chip" style="color: var(--terra); border-color: rgba(181,84,63,0.3); background: rgba(181,84,63,0.06);"><span class="chip-dot" style="background:var(--terra)"></span>Mira · Content</span>
+    <span class="chip" style="color: var(--terra); border-color: rgba(181,84,63,0.3); background: rgba(181,84,63,0.06);"><span class="chip-dot" style="background:var(--terra)"></span>Atlas · Travel</span>
+    <span class="chip" style="color: var(--gold); border-color: rgba(154,123,63,0.3); background: rgba(154,123,63,0.06);"><span class="chip-dot" style="background:var(--gold)"></span>Ivy · Dublin</span>
+    <span class="chip" style="color: var(--gold); border-color: rgba(154,123,63,0.3); background: rgba(154,123,63,0.06);"><span class="chip-dot" style="background:var(--gold)"></span>Zara · Fashion</span>
+    <span class="chip" style="color: var(--lav); border-color: rgba(90,79,122,0.3); background: rgba(90,79,122,0.06);"><span class="chip-dot" style="background:var(--lav)"></span>Rue · Social</span>
+    <span class="chip" style="color: var(--gold); border-color: rgba(154,123,63,0.3); background: rgba(154,123,63,0.06);"><span class="chip-dot" style="background:var(--gold)"></span>Bea · Hobbies</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="card">
+        <div class="card-title">Finance anchor card — Finn</div>
+        <div class="screen">
+          <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px;">Finn · May budget</div>
+                <div style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-style: italic; color: var(--deep);">€1,240 <span style="font-size: 14px; color: var(--muted); font-style: normal;">of €2,000</span></div>
+              </div>
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: conic-gradient(var(--sage) 0% 62%, var(--border) 62% 100%); display: flex; align-items: center; justify-content: center;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500;">62%</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; font-size: 9.5px;">
+              <div style="text-align: center;"><div style="color: var(--muted);">Groceries</div><div style="font-weight: 500; color: var(--text);">€180/€250</div></div>
+              <div style="text-align: center;"><div style="color: var(--muted);">Eating out</div><div style="font-weight: 500; color: var(--terra);">€95/€80 ⚠</div></div>
+              <div style="text-align: center;"><div style="color: var(--muted);">Savings rate</div><div style="font-weight: 500; color: var(--sage);">28%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Sub-tabs within Life</div>
+        <table class="tab-spec">
+          <tr><th>Sub-tab</th><th>Agents</th><th>Display</th></tr>
+          <tr>
+            <td class="td-name">Finance</td>
+            <td><span class="td-tag" style="color:var(--terra);border-color:rgba(181,84,63,0.3);background:rgba(181,84,63,0.06)">Finn</span></td>
+            <td>Budget donut + category bars · wealth snapshot · sinking funds</td>
+          </tr>
+          <tr>
+            <td class="td-name">Discover</td>
+            <td><span class="td-tag" style="color:var(--gold);border-color:rgba(154,123,63,0.3);background:rgba(154,123,63,0.06)">Ivy</span> <span class="td-tag" style="color:var(--lav);border-color:rgba(90,79,122,0.3);background:rgba(90,79,122,0.06)">Bea</span></td>
+            <td>Dublin suggestion cards · Eventbrite events · hobby nudge</td>
+          </tr>
+          <tr>
+            <td class="td-name">Wardrobe</td>
+            <td><span class="td-tag" style="color:var(--gold);border-color:rgba(154,123,63,0.3);background:rgba(154,123,63,0.06)">Zara</span></td>
+            <td>Outfit 1-2-3 image cards · calendar/weather context · wardrobe gaps</td>
+          </tr>
+          <tr>
+            <td class="td-name">Social</td>
+            <td><span class="td-tag" style="color:var(--lav);border-color:rgba(90,79,122,0.3);background:rgba(90,79,122,0.06)">Rue</span></td>
+            <td>Important dates this week · overdue catch-ups · message drafts</td>
+          </tr>
+          <tr>
+            <td class="td-name">Home</td>
+            <td><span class="td-tag" style="color:var(--terra);border-color:rgba(181,84,63,0.3);background:rgba(181,84,63,0.06)">Ember</span> <span class="td-tag" style="color:var(--terra);border-color:rgba(181,84,63,0.3);background:rgba(181,84,63,0.06)">Mira</span></td>
+            <td>Chores due today/week · screen time log · content queue</td>
+          </tr>
+          <tr>
+            <td class="td-name">Travel</td>
+            <td><span class="td-tag" style="color:var(--terra);border-color:rgba(181,84,63,0.3);background:rgba(181,84,63,0.06)">Atlas</span></td>
+            <td>Weekend trip ideas · leave calendar · budget from Finn</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Zara's wardrobe display — image-forward card format</div>
+    <div class="rule amber">
+      <div class="rule-lbl">Critical design note</div>
+      <div class="rule-txt">Zara's output is <strong>visually rich</strong> — outfit suggestions need <strong>large image tiles</strong> (not a list). Three outfit cards side-by-side, each showing the Notion-stored clothing photo, the occasion, and the weather context. A "wear today" tap marks it in the log. This is the most image-heavy view in the app — give it breathing room and white space.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB 5 — AGENTS ═══ -->
+<div class="section" id="tab-5">
+  <div class="section-label">Tab 05</div>
+  <div class="section-title">Agents — <em>your team of 28</em></div>
+  <div class="section-desc">A control room view of all 28 agents. Not for daily use — this is the management layer. Run status, last output, health indicator. Think of it like a server dashboard but for your life agents.</div>
+
+  <div class="card">
+    <div class="card-title">Agent grid — 28 agents organised by group</div>
+    <div class="screen">
+      <div class="screen-nav">
+        <span class="snav active">All</span>
+        <span class="snav">Career</span>
+        <span class="snav">Health</span>
+        <span class="snav">Life</span>
+        <span class="snav">Glue</span>
+        <span class="snav">Meta</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;">
+        <!-- sample agent cards -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; align-items: center; gap: 7px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--sage); flex-shrink: 0;"></div>
+          <div><div style="font-size: 11px; font-weight: 500;">Aria</div><div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;">ran 6:31am · ✓</div></div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; align-items: center; gap: 7px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--sage); flex-shrink: 0;"></div>
+          <div><div style="font-size: 11px; font-weight: 500;">Nova</div><div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;">ran 6:33am · ✓</div></div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; align-items: center; gap: 7px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--amber); flex-shrink: 0;"></div>
+          <div><div style="font-size: 11px; font-weight: 500;">Felix</div><div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em;">slow · 8.2s</div></div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; align-items: center; gap: 7px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--sage); flex-shrink: 0;"></div>
+          <div><div style="font-size: 11px; font-weight: 500;">Luna</div><div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;">ran 6:34am · ✓</div></div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; align-items: center; gap: 7px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--terra); flex-shrink: 0;"></div>
+          <div><div style="font-size: 11px; font-weight: 500;">Echo</div><div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--terra); text-transform: uppercase; letter-spacing: 0.08em;">failed · retry</div></div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 9px 10px; display: flex; align-items: center; gap: 7px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: var(--sage); flex-shrink: 0;"></div>
+          <div><div style="font-size: 11px; font-weight: 500;">Cleo</div><div style="font-family: 'DM Mono', monospace; font-size: 7px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;">ran 6:35am · ✓</div></div>
+        </div>
+      </div>
+      <div style="text-align: center; font-family: 'DM Mono', monospace; font-size: 7.5px; color: var(--muted); margin-top: 8px; letter-spacing: 0.1em; text-transform: uppercase;">... 22 more agents</div>
+    </div>
+    <div class="rule" style="margin-top: 10px;">
+      <div class="rule-lbl">Status dot legend</div>
+      <div class="rule-txt"><strong style="color: var(--sage);">Green</strong> — ran successfully today · <strong style="color: var(--amber);">Amber</strong> — ran but slow (&gt;5s) or partial output · <strong style="color: var(--terra);">Red</strong> — failed, needs attention · <strong style="color: var(--muted);">Grey</strong> — not scheduled today (e.g. Council only runs Sunday)</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Agent detail view — tap any agent to open</div>
+    <div class="ixn"><div class="ixn-trigger">Tap agent</div><div class="ixn-body"><strong>Full-screen slide-up panel.</strong> Shows: agent name + role description, last run timestamp and token cost, today's full output (formatted), run history (last 7 days), and a "Chat with [Agent]" button — opens a text input that sends a message to that specific agent's system prompt context.</div></div>
+    <div class="ixn"><div class="ixn-trigger">Chat button</div><div class="ixn-body"><strong>"Chat with Aria"</strong> — opens a minimal chat interface where your message is appended to Aria's system prompt and context. Results write back to Notion. This is how you ask Aria to dig deeper on a story, or ask Nora to modify tonight's dinner.</div></div>
+    <div class="ixn"><div class="ixn-trigger">Run now button</div><div class="ixn-body"><strong>Manual trigger</strong> — re-runs that agent on demand. Shows a spinner, then displays fresh output. Useful after adding new data to Arc.</div></div>
+  </div>
+</div>
+
+<!-- ═══ TAB 6 — COUNCIL ═══ -->
+<div class="section" id="tab-6">
+  <div class="section-label">Tab 06</div>
+  <div class="section-title">Council — <em>the weekly review</em></div>
+  <div class="section-desc">Mirror + The Council. This tab is intentionally quieter in daily use — it's the Sunday evening ritual view. The design should feel heavier, more considered, more like a journal than a dashboard.</div>
+
+  <div class="chips">
+    <span class="chip" style="color: var(--gold); border-color: rgba(154,123,63,0.3); background: rgba(154,123,63,0.06);"><span class="chip-dot" style="background:var(--gold)"></span>Mirror · Feedback Loop</span>
+    <span class="chip" style="color: var(--gold); border-color: rgba(154,123,63,0.3); background: rgba(154,123,63,0.06);"><span class="chip-dot" style="background:var(--gold)"></span>The Council · Weekly</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="card">
+        <div class="card-title">Sunday view — Council summary</div>
+        <div class="screen">
+          <div style="background: var(--deep); border-radius: 10px; padding: 16px; color: #fff; margin-bottom: 10px;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 7.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px;">The Council · Week 21 · Sunday</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; line-height: 1.4; color: rgba(255,255,255,0.9); margin-bottom: 12px;">"Strong career week. Luna flagged an energy dip mid-week — Felix recommends reducing workout intensity next week during luteal phase."</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-size: 8.5px; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">3 conflicts resolved</span>
+              <span style="font-size: 8.5px; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">2 adjustments proposed</span>
+            </div>
+          </div>
+          <div class="feed-item">
+            <div class="feed-icon" style="background: rgba(154,123,63,0.08);">🪞</div>
+            <div class="feed-body">
+              <div class="feed-agent">Mirror · This week</div>
+              <div class="feed-text">Acted on 7/9 agent suggestions · skipped Felix 2x · Kai coaching ignored Mon+Tue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Council tab — what it contains</div>
+        <table class="tab-spec">
+          <tr><th>Section</th><th>Content</th></tr>
+          <tr>
+            <td class="td-name">This Week</td>
+            <td>Council summary card · top 3 insights · conflicts surfaced</td>
+          </tr>
+          <tr>
+            <td class="td-name">Mirror</td>
+            <td>What you acted on vs ignored · behaviour patterns · personalisation drift note</td>
+          </tr>
+          <tr>
+            <td class="td-name">Transcript</td>
+            <td>Full Council debate log from Notion · collapsible by agent · searchable</td>
+          </tr>
+          <tr>
+            <td class="td-name">Monthly</td>
+            <td>Monthly review (1st of month) · savings rate · skill progress · wellbeing score</td>
+          </tr>
+          <tr>
+            <td class="td-name">Quarterly</td>
+            <td>Deep retrospective · career trajectory · body metrics trend · life alignment</td>
+          </tr>
+        </table>
+        <div class="rule lav" style="margin-top: 8px;">
+          <div class="rule-lbl">Design principle</div>
+          <div class="rule-txt">Council tab should use <strong>more white space, larger serif typography</strong> — it is a reflective space. On non-Sunday weekdays, it shows a small "Next Council: Sunday 8pm" card and a rolling Mirror insight. It should never feel cluttered.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NOTIFICATIONS ═══ -->
+<div class="section" id="notifications">
+  <div class="section-label">Push Notifications</div>
+  <div class="section-title">Time-aware <em>notification system</em></div>
+  <div class="section-desc">Notifications are not blasts — they are timed to the exact moment each agent's output is relevant. Echo (Twilio WhatsApp) is the primary delivery for urgent reminders; in-app push handles context-rich cards.</div>
+
+  <div class="card">
+    <div class="card-title">Daily notification schedule — when each fires</div>
+    <table class="tab-spec">
+      <tr><th>Time</th><th>Agent</th><th>Type</th><th>Content</th></tr>
+      <tr><td class="td-name">6:30am</td><td>Nova</td><td><span class="td-tag" style="color:var(--deep);border-color:rgba(26,58,42,0.3);background:rgba(26,58,42,0.06)">Morning brief</span></td><td>Summary: phase + 3 priorities + weather + outfit · opens Today tab</td></tr>
+      <tr><td class="td-name">8:00am</td><td>Echo</td><td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">WhatsApp</span></td><td>Kai's coaching message for the day — delivered to WhatsApp</td></tr>
+      <tr><td class="td-name">9:00am</td><td>Scout</td><td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">Learning nudge</span></td><td>"Chapter 2 · Session 1 ready — 45 min scheduled 11am"</td></tr>
+      <tr><td class="td-name">12:30pm</td><td>Nora</td><td><span class="td-tag" style="color:var(--sage);border-color:rgba(74,122,90,0.3);background:rgba(74,122,90,0.06)">Meal reminder</span></td><td>Lunch suggestion · kcal running total · water count</td></tr>
+      <tr><td class="td-name">3:00pm</td><td>Echo</td><td><span class="td-tag" style="color:var(--blue);border-color:rgba(46,107,158,0.3);background:rgba(46,107,158,0.06)">WhatsApp</span></td><td>Water + movement check-in if steps &lt; 4k</td></tr>
+      <tr><td class="td-name">5:30pm</td><td>Ivy</td><td><span class="td-tag" style="color:var(--gold);border-color:rgba(154,123,63,0.3);background:rgba(154,123,63,0.06)">Discovery</span></td><td>Dublin suggestion for tonight — only if no plan in Sage's schedule</td></tr>
+      <tr><td class="td-name">7:00pm</td><td>Finn</td><td><span class="td-tag" style="color:var(--terra);border-color:rgba(181,84,63,0.3);background:rgba(181,84,63,0.06)">Budget</span></td><td>Spending check-in — only if a transaction logged that day</td></tr>
+      <tr><td class="td-name">8:00pm</td><td>Halo</td><td><span class="td-tag" style="color:var(--lav);border-color:rgba(90,79,122,0.3);background:rgba(90,79,122,0.06)">Wind-down</span></td><td>Evening reflection prompt + habit completion nudge if incomplete</td></tr>
+      <tr><td class="td-name">9:30pm</td><td>Dusk</td><td><span class="td-tag" style="color:var(--lav);border-color:rgba(90,79,122,0.3);background:rgba(90,79,122,0.06)">Sleep</span></td><td>Sleep prep reminder — only triggers if Dusk detects &lt;7 nights in a row</td></tr>
+      <tr><td class="td-name">Sun 8pm</td><td>Council</td><td><span class="td-tag" style="color:var(--gold);border-color:rgba(154,123,63,0.3);background:rgba(154,123,63,0.06)">Weekly</span></td><td>Council summary — long WhatsApp + in-app Council tab updated</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">In-app notification card format</div>
+    <div class="notif">
+      <div class="notif-icon">🌿</div>
+      <div class="notif-body">
+        <div class="notif-agent">Halo · Wind-down</div>
+        <div class="notif-text">3 things that went well today? Your reflection streak is 12 days. Tap to log.</div>
+      </div>
+    </div>
+    <div class="notif" style="background: var(--sage);">
+      <div class="notif-icon">💪</div>
+      <div class="notif-body">
+        <div class="notif-agent">Felix · Fitness</div>
+        <div class="notif-text">Strength session ready — follicular phase, peak energy. 6,200 steps so far today.</div>
+      </div>
+    </div>
+    <div class="notif" style="background: var(--blue);">
+      <div class="notif-icon">📚</div>
+      <div class="notif-body">
+        <div class="notif-agent">Scout · Arc Agents Ch.2</div>
+        <div class="notif-text">45-min learning block starts in 10 mins. RAG basics — arc_export.js.</div>
+      </div>
+    </div>
+    <div class="rule" style="margin-top: 8px;">
+      <div class="rule-lbl">Notification philosophy</div>
+      <div class="rule-txt"><strong>Never more than 2 in-app notifications per hour.</strong> If multiple agents trigger in the same window, batch them into one card ("3 agents have updates"). Echo WhatsApp messages are separate — these are the high-priority channel. In-app notifications are ambient; WhatsApp is urgent/important.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DESIGN SYSTEM ═══ -->
+<div class="section" id="design">
+  <div class="section-label">Design System</div>
+  <div class="section-title">Visual language <em>+ components</em></div>
+  <div class="section-desc">Arc Agents should feel like Arc — warm, editorial, personal. Not a productivity app. Not a corporate dashboard. A lifestyle tool that happens to be powered by AI.</div>
+
+  <div class="two">
+    <div>
+      <div class="card">
+        <div class="card-title">Colour palette</div>
+        <div class="swatches">
+          <div class="swatch" style="background: #1A3A2A;"><span class="swatch-lbl">Deep</span></div>
+          <div class="swatch" style="background: #4A7A5A;"><span class="swatch-lbl">Sage</span></div>
+          <div class="swatch" style="background: #B5543F;"><span class="swatch-lbl">Terra</span></div>
+          <div class="swatch" style="background: #C4884A;"><span class="swatch-lbl">Amber</span></div>
+          <div class="swatch" style="background: #5A4F7A;"><span class="swatch-lbl">Lav</span></div>
+          <div class="swatch" style="background: #2E6B9E;"><span class="swatch-lbl">Blue</span></div>
+          <div class="swatch" style="background: #9A7B3F;"><span class="swatch-lbl">Gold</span></div>
+          <div class="swatch" style="background: #2A6B6B;"><span class="swatch-lbl">Teal</span></div>
+        </div>
+        <div style="margin-top: 10px; display: flex; gap: 6px;">
+          <div style="background: #F5F2ED; border: 1px solid #DDD8D0; border-radius: 6px; padding: 8px 12px; font-size: 10px; color: #8A8278;">Background #F5F2ED</div>
+          <div style="background: #FDFCFA; border: 1px solid #DDD8D0; border-radius: 6px; padding: 8px 12px; font-size: 10px; color: #8A8278;">Surface #FDFCFA</div>
+          <div style="background: #DDD8D0; border-radius: 6px; padding: 8px 12px; font-size: 10px; color: #8A8278;">Border</div>
+        </div>
+        <div class="rule" style="margin-top: 10px;">
+          <div class="rule-lbl">Colour → agent group mapping</div>
+          <div class="rule-txt">Each agent group has a consistent accent colour used across chips, dots, and card accents. <strong>Career = Blue</strong> · <strong>Health = Sage</strong> · <strong>Life Manager = Terra</strong> · <strong>Discovery = Gold</strong> · <strong>Social/Wellbeing = Lavender</strong> · <strong>Glue = Teal</strong> · <strong>Meta = Amber</strong></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Typography</div>
+        <div style="margin-bottom: 12px;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; line-height: 1.1; margin-bottom: 4px;">Cormorant Garamond</div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">Display · Section titles · Numbers · Italic for emphasis</div>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <div style="font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 400; margin-bottom: 4px;">DM Mono — labels and meta</div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">Agent names · Status · Timestamps · Tags · ALL CAPS + spacing</div>
+        </div>
+        <div>
+          <div style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; margin-bottom: 4px;">DM Sans — body text and UI</div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">Card content · Descriptions · Buttons · Nav</div>
+        </div>
+        <div class="rule" style="margin-top: 10px;">
+          <div class="rule-lbl">Type scale</div>
+          <div class="rule-txt">Display numbers (stats): 28–48px Cormorant italic · Section titles: 24–32px · Card headings: 16–18px · Body: 12–13px · Labels/meta: 8–9.5px DM Mono uppercase · Minimum touch target font: 11px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Core component patterns</div>
+    <div class="three">
+      <div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;">Feed card anatomy</div>
+        <div class="feed-item">
+          <div class="feed-icon" style="background: rgba(26,58,42,0.08);">🤖</div>
+          <div class="feed-body">
+            <div class="feed-agent">Agent · Category</div>
+            <div class="feed-text">Output text, max 2 lines shown. Tap to expand full content.</div>
+            <div class="feed-time">6:31am · tap to expand · swipe ← done</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;">Stat mini card</div>
+        <div class="stat-row" style="grid-template-columns: 1fr 1fr;">
+          <div class="stat-mini"><div class="stat-mini-num">74%</div><div class="stat-mini-lbl">Role match</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">28%</div><div class="stat-mini-lbl">Savings rate</div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;">Agent chip</div>
+        <div class="chips">
+          <span class="chip" style="color: var(--sage); border-color: rgba(74,122,90,0.3); background: rgba(74,122,90,0.06);"><span class="chip-dot" style="background:var(--sage)"></span>Nora · Food</span>
+          <span class="chip" style="color: var(--blue); border-color: rgba(46,107,158,0.3); background: rgba(46,107,158,0.06);"><span class="chip-dot" style="background:var(--blue)"></span>Aria · News</span>
+          <span class="chip" style="color: var(--terra); border-color: rgba(181,84,63,0.3); background: rgba(181,84,63,0.06);"><span class="chip-dot" style="background:var(--terra)"></span>Sage · Day</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Spacing + shape language</div>
+    <div class="two">
+      <div class="rule">
+        <div class="rule-lbl">Border radius system</div>
+        <div class="rule-txt">Cards: 12–14px · Sub-cards: 8–10px · Chips/pills: 20px (fully rounded) · Buttons: 8px · Status dots: 50% (circle) · Modal sheets: 20px top corners only</div>
+      </div>
+      <div class="rule blue">
+        <div class="rule-lbl">Spacing rhythm</div>
+        <div class="rule-txt">Base unit: 4px. Cards: 16–20px internal padding · Card gap: 8–10px · Section padding: 16px · Tab content: 16px horizontal margin · Between sections: 32px</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DEV HANDOFF ═══ -->
+<div class="section" id="handoff">
+  <div class="section-label">Dev Handoff</div>
+  <div class="section-title">What to tell the <em>app builder</em></div>
+  <div class="section-desc">A concise brief you can share directly with a designer or developer. Covers the essential constraints and stack choices they need to know before starting.</div>
+
+  <div class="card">
+    <div class="card-title">Essential requirements — the brief</div>
+    <table class="tab-spec">
+      <tr><th>Requirement</th><th>Spec</th></tr>
+      <tr><td class="td-name">Platform target</td><td>Mobile-first PWA or React Native. Must work well as a phone home screen app. Desktop secondary.</td></tr>
+      <tr><td class="td-name">Navigation</td><td>Bottom tab bar · 6 tabs · Today / Health / Career / Life / Agents / Council · icons + labels</td></tr>
+      <tr><td class="td-name">Data source</td><td>Reads from Notion API (agent outputs) + optional local Flask JSON endpoint · no backend of its own · refresh every 15 min + on open</td></tr>
+      <tr><td class="td-name">State model</td><td>App knows current time + reads Arc cycle data (day of cycle) → this drives which cards surface at top of Today</td></tr>
+      <tr><td class="td-name">Push notifications</td><td>10 scheduled daily notifications · times are configurable · badge count on Today tab for unread cards</td></tr>
+      <tr><td class="td-name">Offline</td><td>Cache last Notion fetch · app must be usable offline with last-known data · show "last updated" timestamp</td></tr>
+      <tr><td class="td-name">Chat interface</td><td>Each agent has a simple chat modal · message → hits Flask endpoint → Claude API · response displayed inline · no threading needed</td></tr>
+      <tr><td class="td-name">Fonts</td><td>Cormorant Garamond (Google Fonts) + DM Mono + DM Sans — must load via CDN, not system fonts</td></tr>
+      <tr><td class="td-name">Animations</td><td>Card entrance: fade up · Tab switch: fade · Expand/collapse: smooth height transition · Notification: slide in from top · Nothing that feels heavy or gamified</td></tr>
+      <tr><td class="td-name">Dark mode</td><td>Optional phase 2 — not required for MVP. If added, invert the warm parchment palette to a deep warm charcoal, not pure black.</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">MVP scope — what to build first</div>
+    <div class="three">
+      <div class="rule">
+        <div class="rule-lbl">Phase 1 MVP</div>
+        <div class="rule-txt">Today tab only · reads Notion · morning brief card · schedule strip · 3 push notifications (morning, evening wind-down, one reminder) · static layout</div>
+      </div>
+      <div class="rule blue">
+        <div class="rule-lbl">Phase 2 — full app</div>
+        <div class="rule-txt">All 6 tabs · time-aware card ordering · swipe gestures · sub-tab navigation within Health and Career · full notification schedule · agent chat modals</div>
+      </div>
+      <div class="rule amber">
+        <div class="rule-lbl">Phase 3 — polish</div>
+        <div class="rule-txt">Cycle ring animation · Agents status grid · Mirror behaviour graph · Council transcript reader · Zara image tiles · Finn donut chart · Barcelona animations</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">Technology recommendation</div>
+    <div class="rule">
+      <div class="rule-lbl">Recommended stack for builder</div>
+      <div class="rule-txt"><strong>React Native + Expo</strong> (easiest to go from web → phone app) — or <strong>a PWA in React</strong> if they're more comfortable with web. Either works. Key libraries: react-query (data fetching + caching), react-native-push-notification or expo-notifications, @notionhq/client for Notion reads. The backend (Flask) is already being built as part of Ch.8 of the learning plan — the frontend just calls its /api/today, /api/agents/[name] etc. endpoints.</div>
+    </div>
+  </div>
+</div>
+
+<div style="background: var(--deep); padding: 32px; margin-top: 40px;">
+  <div style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    <div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px;">Core principle</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.5;">The app changes state through the day — not a static dashboard but a living companion</div>
+    </div>
+    <div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px;">28 agents · 6 tabs</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.5;">Today · Health · Career · Life · Agents · Council</div>
+    </div>
+    <div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px;">This spec</div>
+      <div style="font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.7;">Arc Agents UI Spec v1 · Covers tab structure, card formats, notification schedule, design system, interaction patterns, dev handoff notes</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
