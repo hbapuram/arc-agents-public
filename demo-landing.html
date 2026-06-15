@@ -454,6 +454,87 @@
             color: var(--text-light);
             font-size: 16px;
         }
+
+        /* Screenshot Mockups */
+        .screenshot {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-header {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .screenshot-content {
+            padding: 20px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .ui-card {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .ui-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ui-stat:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-accent {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .chat-bubble {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .chat-user {
+            background: var(--accent);
+            color: var(--primary);
+            margin-left: 20px;
+        }
+
+        .chat-ai {
+            background: var(--light);
+            color: var(--text);
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -955,121 +1036,184 @@ This snapshot is serialized as plain text and becomes part of EVERY agent's cont
         </div>
 
         <h3>Step 1: Load Demo Data</h3>
-        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
-            <p style="margin-bottom: 15px;">When you first open Arc, go to the <strong>Settings</strong> tab and click <strong>"Load Demo Data"</strong>. This populates the app with realistic example data so you can see how everything works.</p>
-            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 20px; font-size: 13px; font-family: monospace;">
-                📱 Settings Tab
-                ├── Load Demo Data (button)
-                └── [Click → Loads 7 days of meals, workouts, sleep, symptoms, etc.]
+        <div class="screenshot">
+            <div class="screenshot-header">
+                ⚙️ Settings Tab
+            </div>
+            <div class="screenshot-content">
+                <div class="ui-card">
+                    <strong>Demo Data</strong><br>
+                    Load realistic example data to explore the app.
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button style="background: var(--accent); color: var(--primary); border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                        ✓ Load Demo Data
+                    </button>
+                </div>
+                <div style="font-size: 12px; color: var(--text-light); margin-top: 15px; text-align: center;">
+                    Loads: 7 days meals • 5 workouts • sleep data • symptoms • supplements
+                </div>
             </div>
         </div>
 
         <h3>Step 2: Explore the Today Tab</h3>
-        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
-            <p style="margin-bottom: 20px;">The <strong>Today tab</strong> is your dashboard. You'll see:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
+        <div class="screenshot">
+            <div class="screenshot-header">
+                📱 Today Tab
+            </div>
+            <div class="screenshot-content">
+                <div class="ui-card">
                     <strong>🌅 Aurora Brief</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Morning synthesis: 5 personalized actions for today based on your cycle phase, sleep quality, and workouts.</p>
+                    <p style="margin: 8px 0 0 0; font-size: 12px; color: var(--text-light);">Today's focus: Rest day (Luteal + low HRV). Eat more carbs. Yoga 30min. Sleep priority.</p>
                 </div>
-                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
-                    <strong>📊 Health Cards</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Sleep (7h), HRV (55), Steps (12,000), Cycle phase (Luteal), Water intake (1800ml).</p>
+
+                <div class="ui-card">
+                    <strong>📊 Health Signals</strong>
+                    <div class="ui-stat">
+                        <span class="stat-label">Sleep</span>
+                        <span class="stat-value">7h 24m</span>
+                    </div>
+                    <div class="ui-stat">
+                        <span class="stat-label">HRV</span>
+                        <span class="stat-accent">55 ms</span>
+                    </div>
+                    <div class="ui-stat">
+                        <span class="stat-label">Steps</span>
+                        <span class="stat-value">12,450</span>
+                    </div>
+                    <div class="ui-stat">
+                        <span class="stat-label">Phase</span>
+                        <span style="color: #d64545; font-weight: 600;">🔴 Luteal (Day 21)</span>
+                    </div>
                 </div>
-                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
-                    <strong>⏰ Schedule</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Your day's plan: workouts, meals, supplements, care routines, chores.</p>
-                </div>
-                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent);">
-                    <strong>💧 Water Tracker</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Quick-add buttons: Glass, Mug, Bottle. Progress bar shows 1800/2000ml logged.</p>
+
+                <div class="ui-card">
+                    <strong>💧 Water Intake</strong>
+                    <div style="margin: 10px 0;">
+                        <div style="background: var(--border); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent); height: 100%; width: 90%;"></div>
+                        </div>
+                        <div style="margin-top: 8px; font-size: 11px; color: var(--text-light);">1800 / 2000 ml</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <h3>Step 3: Chat With Agents</h3>
-        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
-            <p style="margin-bottom: 20px;">Click on an agent to chat. Each agent sees your full health snapshot and gives personalized advice:</p>
 
-            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 25px; margin: 20px 0;">
-                <h4 style="color: var(--primary); margin-bottom: 15px;">🍽️ Nora (Nutrition)</h4>
-                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: monospace; font-size: 12px;">
-You: <strong>"What should I eat today?"</strong>
-
-Nora: "You're in your Luteal phase with low HRV (55). Today I recommend:
-- Carbs: 45% (from 40%) — progesterone increases appetite
-- Protein: 100g (stable)
-- Meals: Warm carbs, anti-inflammatory foods
-
-Try: Sweet potato + black beans + olive oil (fits your pantry)
-Macros: 650 kcal, 95g carbs, 18g protein, 22g fat"
+        <h4 style="color: var(--primary); margin: 20px 0 15px 0;">🍽️ Nora (Nutrition)</h4>
+        <div class="screenshot">
+            <div class="screenshot-header">💬 Chat with Nora</div>
+            <div class="screenshot-content">
+                <div class="chat-bubble chat-user">What should I eat today?</div>
+                <div class="chat-bubble chat-ai">
+                    <strong>You're in Luteal phase with low HRV.</strong> I recommend:<br>
+                    • Carbs: 45% (progesterone ↑ appetite)<br>
+                    • Protein: 100g<br>
+                    • Try: Sweet potato + black beans<br>
+                    <br>
+                    <strong>650 kcal • 95g carbs • 18g protein</strong>
                 </div>
-                <p style="font-size: 12px; color: var(--text-light);">Notice: Nora knew your phase, HRV, pantry, and macro goals—all without you telling her.</p>
             </div>
+        </div>
 
-            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 25px;">
-                <h4 style="color: var(--primary); margin-bottom: 15px;">💪 Felix (Fitness)</h4>
-                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: monospace; font-size: 12px;">
-You: <strong>"Should I do HIIT today?"</strong>
-
-Felix: "Not today. Your HRV is low (55) and you're in Luteal phase.
-Your body needs recovery. I recommend:
-- Yoga or gentle walk (30 min)
-- Prioritize sleep tonight
-- Save HIIT for your Follicular phase (higher tolerance)
-
-You did 3 workouts this week—good volume. Rest is the right call."
+        <h4 style="color: var(--primary); margin: 20px 0 15px 0;">💪 Felix (Fitness)</h4>
+        <div class="screenshot">
+            <div class="screenshot-header">💬 Chat with Felix</div>
+            <div class="screenshot-content">
+                <div class="chat-bubble chat-user">Should I do HIIT today?</div>
+                <div class="chat-bubble chat-ai">
+                    <strong>Not today.</strong> Your HRV is low (55) + Luteal phase = rest day.<br>
+                    <br>
+                    Instead:<br>
+                    • Yoga or walk (30 min)<br>
+                    • Prioritize sleep<br>
+                    • Save HIIT for Follicular phase<br>
+                    <br>
+                    You've done 3 workouts this week—excellent volume. Rest is the right call.
                 </div>
-                <p style="font-size: 12px; color: var(--text-light);">Felix coordinated with Nora: both recommend recovery without conflicting.</p>
             </div>
         </div>
 
         <h3>Step 4: Log Your Data</h3>
-        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
-            <p style="margin-bottom: 15px;">Go to <strong>Health → Data</strong> to log your health information:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
-                <div style="background: white; padding: 15px; border-radius: 8px;">
+        <div class="screenshot">
+            <div class="screenshot-header">📊 Health → Data Tab</div>
+            <div class="screenshot-content">
+                <div class="ui-card">
                     <strong>Sleep</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">7 hours, 60 min deep sleep</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                        <span style="color: var(--text-light); font-size: 12px;">Duration</span>
+                        <input type="number" value="7" style="width: 60px; padding: 4px; border: 1px solid var(--border); border-radius: 4px;">
+                        <span style="color: var(--text-light); font-size: 12px;">hours</span>
+                    </div>
                 </div>
-                <div style="background: white; padding: 15px; border-radius: 8px;">
-                    <strong>HRV</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">55 ms (recovery indicator)</p>
-                </div>
-                <div style="background: white; padding: 15px; border-radius: 8px;">
+
+                <div class="ui-card">
                     <strong>Workouts</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Yoga, 30 min, felt good 🟢</p>
+                    <div style="margin-top: 8px;">
+                        <select style="width: 100%; padding: 6px; border: 1px solid var(--border); border-radius: 4px; font-size: 12px;">
+                            <option>Select type...</option>
+                            <option selected>Yoga</option>
+                            <option>HIIT</option>
+                            <option>Strength</option>
+                        </select>
+                        <div style="margin-top: 8px;">Duration: 30 min</div>
+                        <div style="margin-top: 8px;">
+                            Feedback: <span style="font-size: 16px; cursor: pointer;">🟢</span> <span style="font-size: 16px; cursor: pointer;">🟡</span> <span style="font-size: 16px; cursor: pointer;">🔴</span>
+                        </div>
+                    </div>
                 </div>
-                <div style="background: white; padding: 15px; border-radius: 8px;">
+
+                <div class="ui-card">
                     <strong>Symptoms</strong>
-                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Bloating (3/5), fatigue (2/5)</p>
+                    <div class="ui-stat">
+                        <span class="stat-label">Bloating</span>
+                        <span style="color: #ff9500; font-weight: 600;">★★★☆☆ (3/5)</span>
+                    </div>
+                    <div class="ui-stat">
+                        <span class="stat-label">Fatigue</span>
+                        <span style="color: #ff9500; font-weight: 600;">★★☆☆☆ (2/5)</span>
+                    </div>
                 </div>
             </div>
-            <p style="font-size: 13px; color: var(--text-light);">Or use <strong>"Tell Arc"</strong> on the Today tab to log naturally: <em>"Slept 7 hours, did 30 min yoga, feeling bloated"</em> → Arc parses it automatically.</p>
         </div>
 
+        <p style="margin: 20px 0; font-size: 13px; color: var(--text-light);"><strong>Shortcut:</strong> Use "Tell Arc" on Today tab: <em>"Slept 7h, yoga 30min, feeling bloated"</em> → Arc parses automatically</p>
+
         <h3>Step 5: View Council Synthesis</h3>
-        <div style="background: var(--light); padding: 30px; border-radius: 12px; margin: 30px 0;">
-            <p style="margin-bottom: 20px;">Go to the <strong>Council tab</strong> to see the evening synthesis—your day summarized:</p>
-            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 25px;">
-                <h4 style="color: var(--primary); margin-bottom: 15px;">🕯️ Council Review</h4>
-                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; margin-bottom: 15px; font-family: monospace; font-size: 12px;">
-<strong>Today's Summary:</strong>
-✓ Respected your Luteal phase (yoga instead of HIIT)
-✓ Macro goals hit: 1950 kcal, 105g protein, 52% carbs
-✓ Sleep: 7 hours (good recovery)
-✓ HRV improved slightly: 55 → 58
-✓ Symptoms on track: bloating expected day 21 of cycle
+        <div class="screenshot">
+            <div class="screenshot-header">🕯️ Council Tab - Evening Review</div>
+            <div class="screenshot-content">
+                <div class="ui-card">
+                    <strong>Today's Summary</strong>
+                    <div style="margin-top: 10px; font-size: 12px; color: var(--text-light); line-height: 1.6;">
+                        ✓ Respected Luteal phase (yoga vs HIIT)<br>
+                        ✓ Macros: 1950 kcal • 105g protein<br>
+                        ✓ Sleep: 7h (good recovery)<br>
+                        ✓ HRV trending up: 55 → 58<br>
+                        ✓ Symptoms on track (expected)
+                    </div>
+                </div>
 
-<strong>Trends (7-day):</strong>
-- Sleep: 7.1 hours avg (stable)
-- Protein: 103g avg (exceeds goal)
-- Workouts: 2 this week (good volume for Luteal)
-- Symptoms: Bloating peaks day 21-23 (pattern confirmed)
+                <div class="ui-card">
+                    <strong>7-Day Trends</strong>
+                    <div class="ui-stat">
+                        <span class="stat-label">Sleep Avg</span>
+                        <span class="stat-value">7.1h</span>
+                    </div>
+                    <div class="ui-stat">
+                        <span class="stat-label">Protein Avg</span>
+                        <span class="stat-accent">103g</span>
+                    </div>
+                    <div class="ui-stat">
+                        <span class="stat-label">Workouts</span>
+                        <span class="stat-value">2 this week</span>
+                    </div>
+                </div>
 
-<strong>Recommendation:</strong>
-Keep magnesium intake high through day 28.
-Schedule intense workouts for Follicular phase (next week).
+                <div class="ui-card" style="background: var(--accent); background-opacity: 0.1; border-left: 3px solid var(--accent);">
+                    <strong style="color: var(--primary);">💡 Recommendation</strong>
+                    <p style="margin: 8px 0 0 0; font-size: 12px;">Keep magnesium high through day 28. Schedule HIIT for Follicular phase next week.</p>
                 </div>
             </div>
         </div>
