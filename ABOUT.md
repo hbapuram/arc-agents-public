@@ -268,10 +268,10 @@ Built in React + Flask with no build step. Easy to:
 
 ## How to Get Started
 
-### Option 1: Web App (Easiest)
-1. Go to [arc-agents.vercel.app](https://arc-agents.vercel.app)
-2. Load demo data
-3. Start logging
+### Option 1: Live Demo (Easiest)
+1. Deploy using the setup guide below
+2. Load demo data (Settings tab)
+3. Start logging your health
 4. Chat with agents
 
 ### Option 2: Self-Hosted (Most Control)
@@ -349,8 +349,7 @@ The real innovation isn't the AI—it's the **synthesis**. One agent seeing one 
 
 ---
 
-**Built by [Hrishita Bapuram](https://hrishita.dev)**  
-[GitHub](https://github.com/yourusername/arc-agents-public) | [Live Demo](https://arc-agents.vercel.app) | [Learn the Journey](https://substack.com/@hrishita)
+**Open Source | [GitHub](https://github.com/yourusername/arc-agents-public) | MIT License**
 
 ---
 

@@ -250,5 +250,4 @@ MIT — use it, learn from it, build on it. See [`LICENSE`](LICENSE).
 
 ---
 
-**Built by [Hrishita Bapuram](https://hrishita.dev)**  
-[Follow the journey on Substack](https://substack.com/@hrishita) | [GitHub](https://github.com/yourusername/arc-agents-public) | [Demo](https://arc-agents.vercel.app)
+**Built with ❤️ | [GitHub](https://github.com/yourusername/arc-agents-public) | [Deployed on Vercel](https://vercel.com)**

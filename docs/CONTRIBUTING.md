@@ -137,7 +137,7 @@ Stress feeds into Aurora/Council synthesis.
 
 - **Questions?** Open a discussion on GitHub
 - **Stuck?** Comment on the PR or issue
-- **Security issue?** Email hbapuram06@gmail.com (don't post publicly)
+- **Security issue?** Open a private security advisory on GitHub (don't post publicly)
 
 ---
 
@@ -192,6 +192,6 @@ We'll mention contributors in:
 
 ## Questions?
 
-Open a discussion or email hbapuram06@gmail.com.
+Open a discussion on GitHub or submit an issue.
 
 Thank you for contributing to Arc Agents! 🎉

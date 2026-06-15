@@ -277,7 +277,7 @@ If something looks wrong, open an issue. Or fork and fix it yourself.
 
 If a security issue is discovered:
 
-1. **Reporting**: Email hbapuram06@gmail.com with details (don't post publicly)
+1. **Reporting**: Open a private security advisory on GitHub (don't post publicly)
 2. **Investigation**: We'll assess the impact
 3. **Fix**: We'll patch and deploy (usually within 24-48 hours)
 4. **Notification**: We'll post an advisory explaining the issue + mitigation steps
